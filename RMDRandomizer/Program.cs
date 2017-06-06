@@ -122,7 +122,6 @@ namespace RMDRandomizer
                     Console.Write("Path to extracted P4 BGM directory: ");
                     List<string> adxFiles = Randomizer.GetADX(Console.ReadLine());
                     outputDir = $"{outputDir}\\ADX";
-                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
 
                     Console.WriteLine("Would you like to include other ADX files? (y/n): ");
                     selection = Console.ReadLine().ToUpper();
@@ -144,7 +143,7 @@ namespace RMDRandomizer
                         }
                     }
                     Directory.CreateDirectory(outputDir);
-
+                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
 
                     for (int i = 0; i < 107; i++)
                     {
@@ -246,7 +245,6 @@ namespace RMDRandomizer
                     Console.Write("Path to extracted BGM directory: ");
                     List<string> adxFiles = Randomizer.GetADX(Console.ReadLine());
                     outputDir = $"{outputDir}\\ADX";
-                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
 
                     Console.WriteLine("Would you like to include other ADX files? (y/n): ");
                     selection = Console.ReadLine().ToUpper();
@@ -268,7 +266,7 @@ namespace RMDRandomizer
                         }
                     }
                     Directory.CreateDirectory(outputDir);
-
+                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
 
                     for (int i = 0; i < 223; i++)
                     {
