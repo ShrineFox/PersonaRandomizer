@@ -1,6 +1,0 @@
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\bin\Debug\RMDRandomizer.exe.config
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\bin\Debug\RMDRandomizer.exe
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\bin\Debug\RMDRandomizer.pdb
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\obj\Debug\RMDRandomizer.csprojResolveAssemblyReference.cache
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\obj\Debug\RMDRandomizer.exe
-c:\users\ryans\documents\visual studio 2017\Projects\RMDRandomizer\RMDRandomizer\obj\Debug\RMDRandomizer.pdb
