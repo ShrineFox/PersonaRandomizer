@@ -84,9 +84,61 @@ namespace RMDRandomizer
             List<string> adxFiles = new List<string>();
             foreach (string file in Directory.GetFiles(bgmDir, "*.ADX*", System.IO.SearchOption.AllDirectories))
             {
-                adxFiles.Add(file);
+                long length = new System.IO.FileInfo(file).Length;
+                if (length > 540672)
+                {
+                    adxFiles.Add(file);
+                }
             }
             return adxFiles;
+        }
+
+        public static void ADX(string outputDir, bool isP4)
+        {
+            Console.Write("Path to extracted BGM directory: ");
+            List<string> adxFiles = Randomizer.GetADX(Console.ReadLine());
+            Console.WriteLine(adxFiles.Count()); //TEST
+            outputDir = $"{outputDir}\\ADX";
+            Console.WriteLine("Would you like to include other ADX files? (y/n): ");
+            string selection = Console.ReadLine().ToUpper();
+            if (selection == "Y")
+            {
+                Console.Write("Path to extra ADX files: ");
+                adxFiles.AddRange(Randomizer.GetADX(Console.ReadLine()));
+            }
+
+            if (Directory.Exists(outputDir))
+            {
+                try
+                {
+                    Directory.Delete(outputDir, true);
+                }
+                catch
+                {
+                    Console.WriteLine($"Close or backup any files in \"{outputDir}\" that are still in use and try again.");
+                }
+            }
+            Directory.CreateDirectory(outputDir);
+            Random rng = new Random();
+            string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
+            if (isP4 == true) 
+            {
+                for (int i = 0; i < 102; i++)
+                {
+                    string newFileName = adxFiles[i].Split('\\').Last();
+                    File.Copy(RandomizedADXFiles[i], $"{outputDir}\\{newFileName}");
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 98; i++)
+                {
+                    string newFileName = adxFiles[i].Split('\\').Last();
+                    File.Copy(RandomizedADXFiles[i], $"{outputDir}\\{newFileName}");
+                }
+            }
+            
+            Console.WriteLine("ADX files randomized");
         }
 
     }

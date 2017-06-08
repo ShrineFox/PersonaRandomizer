@@ -14,10 +14,26 @@ namespace RMDRandomizer
             bool validSelection = false;
             while (validSelection == false)
             {
-                Console.WriteLine("Select a mode:\np4 - Persona 4 RMD shuffle\np3 - Persona 3 FES RMD Shuffle");
+                Console.WriteLine("Select a mode:\np4 rmd - Persona 4 RMD shuffle\np3 rmd - Persona 3 FES RMD Shuffle\np4 adx- P4 ADX shuffle\np3 adx- P3 ADX shuffle");
                 string selection = Console.ReadLine().ToUpper();
-                if (selection == "P4") { P4Randomized(); validSelection = true; }
-                if (selection == "P3") { P3Randomized(); validSelection = true; }
+                if (selection == "P4 RMD") { P4Randomized(); validSelection = true; }
+                if (selection == "P3 RMD") { P3Randomized(); validSelection = true; }
+                if (selection == "P4 ADX")
+                {
+                    bool isP4 = true;
+                    Console.Write("Output directory: ");
+                    string outputDir = Console.ReadLine();
+                    Randomizer.ADX(outputDir, isP4);
+                    validSelection = true;
+                }
+                if (selection == "P3 ADX")
+                {
+                    bool isP4 = false;
+                    Console.Write("Output directory: ");
+                    string outputDir = Console.ReadLine();
+                    Randomizer.ADX(outputDir, isP4);
+                    validSelection = true;
+                }
                 else { Console.Clear(); }
             }
 
@@ -118,39 +134,9 @@ namespace RMDRandomizer
                 string selection = Console.ReadLine().ToUpper();
                 if (selection == "Y")
                 {
+                    bool isP4 = true;
                     validSelection = true;
-                    Console.Write("Path to extracted P4 BGM directory: ");
-                    List<string> adxFiles = Randomizer.GetADX(Console.ReadLine());
-                    outputDir = $"{outputDir}\\ADX";
-
-                    Console.WriteLine("Would you like to include other ADX files? (y/n): ");
-                    selection = Console.ReadLine().ToUpper();
-                    if (selection == "Y")
-                    {
-                        Console.Write("Path to extra ADX files: ");
-                        adxFiles.AddRange(Randomizer.GetADX(Console.ReadLine()));
-                    }
-
-                    if (Directory.Exists(outputDir))
-                    {
-                        try
-                        {
-                            Directory.Delete(outputDir, true);
-                        }
-                        catch
-                        {
-                            Console.WriteLine($"Close or backup any files in \"{outputDir}\" that are still in use and try again.");
-                        }
-                    }
-                    Directory.CreateDirectory(outputDir);
-                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
-
-                    for (int i = 0; i < 107; i++)
-                    {
-                        string newFileName = adxFiles[i].Split('\\').Last();
-                        File.Copy(RandomizedADXFiles[i], $"{outputDir}\\{newFileName}");
-                    }
-                    Console.WriteLine("ADX files randomized");
+                    Randomizer.ADX(outputDir, isP4);
                 }
                 if (selection == "N") { validSelection = true; }
             }
@@ -234,6 +220,7 @@ namespace RMDRandomizer
                 File.Copy(RandomizedRMDFiles[i], $"{dirListP3[9]}\\{newFileName}");
             }
             Console.WriteLine("FIELD/RMD randomized\nRMDs successfully randomized!\n---------------------------------");
+
             validSelection = false;
             while (validSelection == false)
             {
@@ -241,39 +228,9 @@ namespace RMDRandomizer
                 string selection = Console.ReadLine().ToUpper();
                 if (selection == "Y")
                 {
+                    bool isP4 = false;
                     validSelection = true;
-                    Console.Write("Path to extracted BGM directory: ");
-                    List<string> adxFiles = Randomizer.GetADX(Console.ReadLine());
-                    outputDir = $"{outputDir}\\ADX";
-
-                    Console.WriteLine("Would you like to include other ADX files? (y/n): ");
-                    selection = Console.ReadLine().ToUpper();
-                    if (selection == "Y")
-                    {
-                        Console.Write("Path to extra ADX files: ");
-                        adxFiles.AddRange(Randomizer.GetADX(Console.ReadLine()));
-                    }
-                    
-                    if (Directory.Exists(outputDir))
-                        {
-                        try
-                        {
-                            Directory.Delete(outputDir, true);
-                        }
-                        catch
-                        {
-                            Console.WriteLine($"Close or backup any files in \"{outputDir}\" that are still in use and try again.");
-                        }
-                    }
-                    Directory.CreateDirectory(outputDir);
-                    string[] RandomizedADXFiles = adxFiles.ToArray().OrderBy(x => rng.Next()).ToArray();
-
-                    for (int i = 0; i < 223; i++)
-                    {
-                        string newFileName = adxFiles[i].Split('\\').Last();
-                        File.Copy(RandomizedADXFiles[i], $"{outputDir}\\{newFileName}");
-                    }
-                    Console.WriteLine("ADX files randomized");
+                    Randomizer.ADX(outputDir, isP4);
                 }
                 if (selection == "N") { validSelection = true; }
             }
