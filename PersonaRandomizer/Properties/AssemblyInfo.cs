@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RMDRandomizer")]
+[assembly: AssemblyTitle("PersonaRandomizer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RMDRandomizer")]
+[assembly: AssemblyProduct("PersonaRandomizer")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c2844042-8d79-42e9-a491-71b3000f0344")]
+[assembly: Guid("d4468138-a3f7-4cea-9402-a18b96760dce")]
 
 // Version information for an assembly consists of the following four values:
 //

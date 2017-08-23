@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RMDRandomizer", "RMDRandomizer\RMDRandomizer.csproj", "{C2844042-8D79-42E9-A491-71B3000F0344}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonaRandomizer", "PersonaRandomizer\PersonaRandomizer.csproj", "{D4468138-A3F7-4CEA-9402-A18B96760DCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C2844042-8D79-42E9-A491-71B3000F0344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2844042-8D79-42E9-A491-71B3000F0344}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2844042-8D79-42E9-A491-71B3000F0344}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2844042-8D79-42E9-A491-71B3000F0344}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4468138-A3F7-4CEA-9402-A18B96760DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4468138-A3F7-4CEA-9402-A18B96760DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4468138-A3F7-4CEA-9402-A18B96760DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4468138-A3F7-4CEA-9402-A18B96760DCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
