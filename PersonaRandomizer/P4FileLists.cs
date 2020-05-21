@@ -8,6 +8,16 @@ namespace PersonaRandomizer
 {
     public class P4FileLists
     {
+        public List<string> p4Tables = new List<string>()
+        {
+            "UNIT",
+            "SKILL",
+            "PERSONA",
+            "MSG",
+            "MODEL",
+            "ENCOUNT"
+        };
+
         public List<string> p4Dropdown = new List<string>()
         {
             "BGM",

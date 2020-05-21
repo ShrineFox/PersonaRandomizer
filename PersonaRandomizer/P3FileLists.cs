@@ -8,6 +8,33 @@ namespace PersonaRandomizer
 {
     public class P3FileLists
     {
+        public List<string> p3fesTables = new List<string>()
+        {
+            "UNIT_F",
+            "UNIT",
+            "SKILL_F",
+            "SKILL",
+            "PERSONA_F",
+            "PERSONA",
+            "MSG",
+            "MODEL",
+            "ENCOUNT_F",
+            "ENCOUNT",
+            "AICALC_F",
+            "AICALC"
+        };
+
+        public List<string> p3Tables = new List<string>()
+        {
+            "UNIT",
+            "SKILL",
+            "PERSONA",
+            "MSG",
+            "MODEL",
+            "ENCOUNT",
+            "AICALC"
+        };
+
         public List<string> p3Dropdown = new List<string>()
         {
             "BGM",

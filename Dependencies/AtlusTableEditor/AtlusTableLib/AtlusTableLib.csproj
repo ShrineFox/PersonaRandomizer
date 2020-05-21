@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E5A4D9DF-FE64-4C13-AF90-EB59C11B3A33}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtlusTableLib</RootNamespace>
+    <AssemblyName>AtlusTableLib</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Apis, Version=1.27.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.27.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.27.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.27.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.27.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.27.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.1\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameManager.cs" />
+    <Compile Include="Nocturne\Tables.cs" />
+    <Compile Include="Persona3FES\AICalculationTable.cs" />
+    <Compile Include="Persona3FES\AICalculationTableF.cs" />
+    <Compile Include="Persona3FES\Constants.cs" />
+    <Compile Include="Persona3FES\EffectTable.cs" />
+    <Compile Include="Persona3FES\EncounterTable.cs" />
+    <Compile Include="Persona3FES\Encounter.cs" />
+    <Compile Include="Persona3FES\EncounterTableF.cs" />
+    <Compile Include="Persona3FES\MessageTable.cs" />
+    <Compile Include="Persona3FES\ModelAnimationProperties.cs" />
+    <Compile Include="Persona3FES\ModelPivot.cs" />
+    <Compile Include="Persona3FES\ModelTable.cs" />
+    <Compile Include="Persona3FES\Party2ModelInfo.cs" />
+    <Compile Include="Persona3FES\PartyModelInfo.cs" />
+    <Compile Include="Persona3FES\PersonaModelInfo.cs" />
+    <Compile Include="Persona3FES\PersonaSkill.cs" />
+    <Compile Include="Persona3FES\PersonaSkillSet.cs" />
+    <Compile Include="Persona3FES\PersonaStats.cs" />
+    <Compile Include="Persona3FES\PersonaTable.cs" />
+    <Compile Include="Persona3FES\PersonaTableF.cs" />
+    <Compile Include="Persona3FES\Skill.cs" />
+    <Compile Include="Persona3FES\SkillAdditionalEffectFlags.cs" />
+    <Compile Include="Persona3FES\SkillAilmentFlags.cs" />
+    <Compile Include="Persona3FES\SkillElementType.cs" />
+    <Compile Include="Persona3FES\SkillPowerType.cs" />
+    <Compile Include="Persona3FES\SkillStatusEffectFlags.cs" />
+    <Compile Include="Persona3FES\SkillTable.cs" />
+    <Compile Include="Persona3FES\SkillTableF.cs" />
+    <Compile Include="Persona3FES\SkillTargetFilterFlags.cs" />
+    <Compile Include="Persona3FES\SkillTargetSelectionMode.cs" />
+    <Compile Include="Persona3FES\SkillUsageDrainType.cs" />
+    <Compile Include="Persona3FES\UnitModelInfo.cs" />
+    <Compile Include="Persona3FES\UnitStats.cs" />
+    <Compile Include="Persona3FES\UnitTableF.cs" />
+    <Compile Include="Persona3FES\UnitTable.cs" />
+    <Compile Include="Persona4Golden\Skill.cs" />
+    <Compile Include="Persona4Golden\SkillTable.cs" />
+    <Compile Include="Persona4\AICalculationTable.cs" />
+    <Compile Include="Persona4\Constants.cs" />
+    <Compile Include="Persona4\Encounter.cs" />
+    <Compile Include="Persona4\EncounterTable.cs" />
+    <Compile Include="Persona4\MessageTable.cs" />
+    <Compile Include="Persona4\ModelAnimationProperties.cs" />
+    <Compile Include="Persona4\ModelPivot.cs" />
+    <Compile Include="Persona4\ModelTable.cs" />
+    <Compile Include="Persona4\PartyModelInfo.cs" />
+    <Compile Include="Persona4\PersonaModelInfo.cs" />
+    <Compile Include="Persona4\PersonaSkill.cs" />
+    <Compile Include="Persona4\PersonaSkillSet.cs" />
+    <Compile Include="Persona4\PersonaStats.cs" />
+    <Compile Include="Persona4\PersonaTable.cs" />
+    <Compile Include="Persona4\Skill.cs" />
+    <Compile Include="Persona4\SkillAdditionalEffectFlags.cs" />
+    <Compile Include="Persona4\SkillAilmentFlags.cs" />
+    <Compile Include="Persona4\SkillElementType.cs" />
+    <Compile Include="Persona4\SkillPowerType.cs" />
+    <Compile Include="Persona4\SkillStatusEffectFlags.cs" />
+    <Compile Include="Persona4\SkillTable.cs" />
+    <Compile Include="Persona4\SkillTargetFilterFlags.cs" />
+    <Compile Include="Persona4\SkillTargetSelectionMode.cs" />
+    <Compile Include="Persona4\SkillUsageDrainType.cs" />
+    <Compile Include="Persona4\UnitModelInfo.cs" />
+    <Compile Include="Persona4\UnitStats.cs" />
+    <Compile Include="Persona4\UnitTable.cs" />
+    <Compile Include="Persona5\AICalculationTable.cs" />
+    <Compile Include="Persona5\Constants.cs" />
+    <Compile Include="Persona5\ElsaiTable.cs" />
+    <Compile Include="Persona5\Encounter.cs" />
+    <Compile Include="Persona5\EncounterTable.cs" />
+    <Compile Include="Persona5\ExistTable.cs" />
+    <Compile Include="Persona5\ItemTable.cs" />
+    <Compile Include="Persona5\NameTable.cs" />
+    <Compile Include="Persona5\PersonaTable.cs" />
+    <Compile Include="Persona5\PlayerTable.cs" />
+    <Compile Include="Persona5\SkillTable.cs" />
+    <Compile Include="Persona5\TalkInfoTable.cs" />
+    <Compile Include="Persona5\UnitTable.cs" />
+    <Compile Include="Persona5\VisualTable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\TableAttribute.cs" />
+    <Compile Include="Serialization\TableMemberAttribute.cs" />
+    <Compile Include="Serialization\TableSerializer.cs" />
+    <Compile Include="Serialization\TextEncoding.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DigitalDevilSaga2\" />
+    <Folder Include="DigitalDevilSaga\" />
+    <Folder Include="Persona3Portable\" />
+    <Folder Include="RaidouKuzunohaVsKingAbaddon\" />
+    <Folder Include="RaidouKuzunohaVsTheSoullessArmy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TGELib\TGELib\TGELib.csproj">
+      <Project>{2c083582-b39e-45ca-bf8f-3d361cdea80a}</Project>
+      <Name>TGELib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
