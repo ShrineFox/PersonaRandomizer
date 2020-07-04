@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using GoogleTranslateNET;
+using GoogleTranslateNet;
 
 namespace AtlusRandomizer
 {

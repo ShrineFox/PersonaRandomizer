@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtlusLibSharp.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

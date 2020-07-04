@@ -103,21 +103,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Visual Studio 2019\Projects\AtlusTableEditor\Persona4Randomizer\AtlusRandomizer.csproj">
+    <Content Include="icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dependencies\AtlusTableEditor\Persona4Randomizer\AtlusRandomizer.csproj">
       <Project>{3e4db24b-7e16-417b-a461-5d3ea32accb2}</Project>
       <Name>AtlusRandomizer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Visual Studio 2019\Projects\AtlusTableEditor\Persona5NameTableDumper\AtlusNameTableDumper.csproj">
-      <Project>{f6cafd27-406f-4c74-a48f-a37c64612900}</Project>
-      <Name>AtlusNameTableDumper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Visual Studio 2019\Projects\AtlusTableRandomizer\AtlusTableRandomizer.csproj">
+    <ProjectReference Include="..\Dependencies\AtlusTableRandomizer\AtlusTableRandomizer.csproj">
       <Project>{85077e74-6d06-435f-84ab-ac9b35462e96}</Project>
       <Name>AtlusTableRandomizer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

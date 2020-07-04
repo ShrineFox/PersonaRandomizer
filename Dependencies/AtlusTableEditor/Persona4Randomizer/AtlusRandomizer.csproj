@@ -33,21 +33,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AtlusLibSharp">
-      <HintPath>..\..\..\..\GitHub\PersonaRandomizer\Dependencies\AtlusLibSharp.dll</HintPath>
+      <HintPath>..\..\AtlusLibSharp.dll</HintPath>
     </Reference>
     <Reference Include="AtlusScriptLib">
-      <HintPath>..\..\AtlusScriptToolchain\Build\Debug\AtlusScriptLib.dll</HintPath>
+      <HintPath>..\..\AtlusScriptLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Portable.BouncyCastle.1.8.1.3\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GoogleApi, Version=3.9.14.0, Culture=neutral, PublicKeyToken=781851e053b06e74, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\GoogleApi.3.9.14\lib\net45\GoogleApi.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GoogleTranslate.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Downloads\GoogleTranslate.Net-master\GoogleTranslate.NET\bin\Release\GoogleTranslate.NET.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="GoogleTranslateNet, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\GoogleTranslateNet.2.0.0\lib\netstandard2.0\GoogleTranslateNet.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=103.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\GoogleTranslate.Net-master\GoogleTranslate.NET\bin\Release\RestSharp.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RestSharp.106.6.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -74,11 +84,12 @@
     <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="TGELib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\GitHub\PersonaRandomizer\Dependencies\TGELib.dll</HintPath>
+      <HintPath>..\..\TGELib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +113,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AtlusTableLib\AtlusTableLib.csproj">
+    <ProjectReference Include="..\..\AtlusTableLib\AtlusTableLib.csproj">
       <Project>{E5A4D9DF-FE64-4C13-AF90-EB59C11B3A33}</Project>
       <Name>AtlusTableLib</Name>
     </ProjectReference>

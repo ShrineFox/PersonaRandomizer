@@ -8,7 +8,7 @@ using System.Threading;
 using AtlusScriptLib;
 using AtlusTableLib.Serialization;
 using TGELib.Reflection;
-using GoogleTranslateNET;
+using GoogleTranslateNet;
 using TGELib.CLI;
 using TGELib.IO;
 using System.Net;

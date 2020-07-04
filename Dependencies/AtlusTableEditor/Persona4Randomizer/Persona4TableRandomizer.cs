@@ -41,7 +41,12 @@ namespace AtlusRandomizer
 
                     case "SKILL":
                         if (options[4])
-                            RandomizeSkillTable(path);
+                        {
+                            if (isP4G)
+                                RandomizeSkillTableP4G(path);
+                            else
+                                RandomizeSkillTable(path);
+                        }
                         break;
 
                     case "UNIT":
@@ -116,6 +121,42 @@ namespace AtlusRandomizer
 
             TableSerializer.Serialize(table, tablePath + "_Randomized");
         }
+
+        private static void RandomizeSkillTableP4G(string tablePath)
+        {
+            var table = TableSerializer.Deserialize<AtlusTableLib.Persona4Golden.SkillTable>(tablePath);
+            var values = GetTableDistinctValues(table);
+
+            var skillTypeValues = values[nameof(table.SkillElementTypes)];
+            for (int i = 0; i < table.SkillElementTypes.Length; i++)
+            {
+                table.SkillElementTypes[i] = GetRandom<SkillElementType>(skillTypeValues);
+            }
+
+            var skillValues = (Dictionary<string, List<object>>)values[nameof(table.Skills)][0];
+            for (var i = 0; i < table.Skills.Length; i++)
+            {
+                ref var skill = ref table.Skills[i];
+
+                skill.DrainType = GetRandom<SkillUsageDrainType>(skillValues[nameof(skill.DrainType)]);
+                skill.Cost = GetRandom<ushort>(skillValues[nameof(skill.Cost)]);
+                skill.TargetSelectionMode = GetRandom<SkillTargetSelectionMode>(skillValues[nameof(skill.TargetSelectionMode)]);
+                skill.TargetFilterFlags = GetRandom<SkillTargetFilterFlags>(skillValues[nameof(skill.TargetFilterFlags)]);
+                skill.HpPowerType = GetRandom<SkillPowerType>(skillValues[nameof(skill.HpPowerType)]);
+                skill.HpPower = GetRandom<ushort>(skillValues[nameof(skill.HpPower)]);
+                skill.SpPowerType = GetRandom<SkillPowerType>(skillValues[nameof(skill.SpPowerType)]);
+                skill.SpPower = GetRandom<ushort>(skillValues[nameof(skill.SpPower)]);
+                skill.ChanceType = GetRandom<byte>(skillValues[nameof(skill.ChanceType)]);
+                skill.Chance = GetRandom<ushort>(skillValues[nameof(skill.Chance)]);
+                skill.AilmentFlags = GetRandom<SkillAilmentFlags>(skillValues[nameof(skill.AilmentFlags)]);
+                skill.AdditionalEffectFlags = GetRandom<SkillAdditionalEffectFlags>(skillValues[nameof(skill.AdditionalEffectFlags)]);
+                skill.StatusEffectFlags = GetRandom<SkillStatusEffectFlags>(skillValues[nameof(skill.StatusEffectFlags)]);
+                skill.CriticalChance = GetRandom<byte>(skillValues[nameof(skill.CriticalChance)]);
+            }
+
+            TableSerializer.Serialize(table, tablePath + "_Randomized");
+        }
+
 
         private static void RandomizePersonaTable(string tablePath)
         {

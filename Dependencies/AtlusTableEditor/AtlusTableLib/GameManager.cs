@@ -1,4 +1,4 @@
-﻿using TGELib.IO;
+﻿using AtlusLibSharp.IO;
 
 namespace AtlusTableLib
 {
