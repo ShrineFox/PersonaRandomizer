@@ -142,10 +142,10 @@ namespace AtlusTableRandomizer
             {
                 ref var encounter = ref table.Encounters[i];
 
-                encounter.EncounterType = GetRandom(encounterTypes);
-                encounter.Field02 = GetRandom(field02s);
-                encounter.Field04 = GetRandom(field04s);
-                encounter.Field06 = GetRandom(field06s);
+                //encounter.EncounterType = GetRandom(encounterTypes);
+                //encounter.Field02 = GetRandom(field02s);
+                //encounter.Field04 = GetRandom(field04s);
+                //encounter.Field06 = GetRandom(field06s);
                 if (bossRush)
                 {
                     encounter.EncounterType = 0;
