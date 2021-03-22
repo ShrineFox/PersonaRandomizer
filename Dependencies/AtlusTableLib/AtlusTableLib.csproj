@@ -186,7 +186,7 @@
     <Compile Include="Serialization\TableMemberAttribute.cs" />
     <Compile Include="Serialization\TableSerializer.cs" />
     <Compile Include="Serialization\TextEncoding.cs" />
-    <Compile Include="Skill.cs" />
+    <Compile Include="Persona5\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DigitalDevilSaga2\" />
