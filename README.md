@@ -9,4 +9,5 @@ Added new randomize options for Persona 5:
 - SKILL.TBL
 - ITEM.TBL
 - NAME.TBL
+
 This version also fixes game crashes related to the randomization of the ENCOUNT.TBL file. The game should now be fully playable randomized, with no crashes. (Although I have not tested this with the other .TBL files)
