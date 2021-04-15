@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AtlusTableLib.Serialization;
 using TGELib.IO;
 
@@ -14,7 +15,7 @@ namespace AtlusTableRandomizer
 
         }
 
-        public static void Randomize(string path, bool bossRush = false)
+        public static void Randomize(string path, bool bossRush = false, string excludedUnits = "")
         {
             string output = path + "_Randomized";
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.EncounterTable>(path);
@@ -90,7 +91,12 @@ namespace AtlusTableRandomizer
                     }
                     else
                     {
-                        encounter.UnitIDs[j] = GetRandom(unitIds);
+                        ushort randomUnitID = GetRandom(unitIds); // Get initial random value
+                        ushort[] excludedUnitIDs = Array.ConvertAll(excludedUnits.Split(' '), s => ushort.Parse(s)); // Get list of excluded values
+                        
+                        while (excludedUnitIDs.Any(x => x.Equals(randomUnitID)))
+                            randomUnitID = GetRandom(unitIds); // Ensure random value doesn't include excluded unit
+                        encounter.UnitIDs[j] = randomUnitID;
                     }
                 }
 
