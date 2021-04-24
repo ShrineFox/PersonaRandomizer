@@ -46,8 +46,6 @@ namespace PersonaRandomizer
             this.tabPage_Files = new System.Windows.Forms.TabPage();
             this.lbl_Usage = new System.Windows.Forms.Label();
             this.tabPage_Tables = new System.Windows.Forms.TabPage();
-            this.lbl_ExcludedUnits = new System.Windows.Forms.Label();
-            this.txtBox_ExcludedUnits = new System.Windows.Forms.TextBox();
             this.checkBox_BossRush = new System.Windows.Forms.CheckBox();
             this.checkedListBox_Tables = new System.Windows.Forms.CheckedListBox();
             this.lbl_TableInput = new System.Windows.Forms.Label();
@@ -55,6 +53,8 @@ namespace PersonaRandomizer
             this.lbl_Game = new System.Windows.Forms.Label();
             this.lbl_Status = new System.Windows.Forms.Label();
             this.comboBox_Game = new System.Windows.Forms.ComboBox();
+            this.lbl_ExcludedUnits = new System.Windows.Forms.Label();
+            this.txtBox_ExcludedUnits = new System.Windows.Forms.TextBox();
             this.tabControl_RandomizeType.SuspendLayout();
             this.tabPage_Files.SuspendLayout();
             this.tabPage_Tables.SuspendLayout();
@@ -190,24 +190,6 @@ namespace PersonaRandomizer
             this.tabPage_Tables.Text = "Tables";
             this.tabPage_Tables.UseVisualStyleBackColor = true;
             // 
-            // lbl_ExcludedUnits
-            // 
-            this.lbl_ExcludedUnits.AutoSize = true;
-            this.lbl_ExcludedUnits.Location = new System.Drawing.Point(11, 162);
-            this.lbl_ExcludedUnits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_ExcludedUnits.Name = "lbl_ExcludedUnits";
-            this.lbl_ExcludedUnits.Size = new System.Drawing.Size(268, 17);
-            this.lbl_ExcludedUnits.TabIndex = 19;
-            this.lbl_ExcludedUnits.Text = "Excluded Unit IDs (separated by spaces):";
-            // 
-            // txtBox_ExcludedUnits
-            // 
-            this.txtBox_ExcludedUnits.Location = new System.Drawing.Point(14, 183);
-            this.txtBox_ExcludedUnits.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBox_ExcludedUnits.Name = "txtBox_ExcludedUnits";
-            this.txtBox_ExcludedUnits.Size = new System.Drawing.Size(313, 22);
-            this.txtBox_ExcludedUnits.TabIndex = 18;
-            // 
             // checkBox_BossRush
             // 
             this.checkBox_BossRush.AccessibleDescription = "";
@@ -282,6 +264,25 @@ namespace PersonaRandomizer
             this.comboBox_Game.Size = new System.Drawing.Size(159, 24);
             this.comboBox_Game.TabIndex = 10;
             this.comboBox_Game.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Game_IndexChanged);
+            // 
+            // lbl_ExcludedUnits
+            // 
+            this.lbl_ExcludedUnits.AutoSize = true;
+            this.lbl_ExcludedUnits.Location = new System.Drawing.Point(11, 162);
+            this.lbl_ExcludedUnits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_ExcludedUnits.Name = "lbl_ExcludedUnits";
+            this.lbl_ExcludedUnits.Size = new System.Drawing.Size(268, 17);
+            this.lbl_ExcludedUnits.TabIndex = 19;
+            this.lbl_ExcludedUnits.Text = "Excluded Unit IDs (separated by spaces):";
+            // 
+            // txtBox_ExcludedUnits
+            // 
+            this.txtBox_ExcludedUnits.Location = new System.Drawing.Point(14, 183);
+            this.txtBox_ExcludedUnits.Margin = new System.Windows.Forms.Padding(4);
+            this.txtBox_ExcludedUnits.Name = "txtBox_ExcludedUnits";
+            this.txtBox_ExcludedUnits.ReadOnly = true;
+            this.txtBox_ExcludedUnits.Size = new System.Drawing.Size(313, 22);
+            this.txtBox_ExcludedUnits.TabIndex = 18;
             // 
             // MainForm
             // 
