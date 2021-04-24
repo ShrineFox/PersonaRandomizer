@@ -4,6 +4,7 @@ using System.IO;
 using AtlusTableLib.Serialization;
 using TGELib.IO;
 using AtlusTableLib.Persona5;
+using System.Linq;
 
 namespace AtlusTableRandomizer
 {
@@ -16,7 +17,7 @@ namespace AtlusTableRandomizer
 
         }
 
-        public static void Randomize(string tableDirectoryPath, bool[] options, bool bossRush = false)
+        public static void Randomize(string tableDirectoryPath, bool[] options, bool bossRush = false, string excludedUnits = "")
         {
             foreach (var path in Directory.EnumerateFiles(tableDirectoryPath, "*.TBL"))
             {
@@ -25,7 +26,7 @@ namespace AtlusTableRandomizer
                     case "ENCOUNT":
                         if (options[0])
                         {
-                            RandomizeEncounterTable(path, bossRush);
+                            RandomizeEncounterTable(path, bossRush, excludedUnits);
                         }
                         break;
 
@@ -94,7 +95,7 @@ namespace AtlusTableRandomizer
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
-        private static void RandomizeEncounterTable(string tablePath, bool bossRush)
+        private static void RandomizeEncounterTable(string tablePath, bool bossRush, string excludedUnits = "")
         {
             string output = tablePath + "_Randomized";
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.EncounterTable>(tablePath);
@@ -173,7 +174,12 @@ namespace AtlusTableRandomizer
                     }
                     else
                     {
-                        encounter.UnitIDs[j] = GetRandom(unitIds);
+                        ushort randomUnitID = GetRandom(unitIds); // Get initial random value
+                        ushort[] excludedUnitIDs = Array.ConvertAll(excludedUnits.Split(' '), s => ushort.Parse(s)); // Get list of excluded values
+
+                        while (excludedUnitIDs.Any(x => x.Equals(randomUnitID)))
+                            randomUnitID = GetRandom(unitIds); // Ensure random value doesn't include excluded unit
+                        encounter.UnitIDs[j] = randomUnitID;
                     }
                 }
 

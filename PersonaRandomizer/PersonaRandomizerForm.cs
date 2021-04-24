@@ -178,7 +178,7 @@ namespace PersonaRandomizer
                     Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options.ToArray(), true, checkBox_BossRush.Checked);
                     break;
                 case "Persona 5":
-                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options.ToArray(), checkBox_BossRush.Checked);
+                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options.ToArray(), checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
                     break;
             }
         }
