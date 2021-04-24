@@ -175,8 +175,9 @@ namespace AtlusTableRandomizer
                     else
                     {
                         ushort randomUnitID = GetRandom(unitIds); // Get initial random value
-                        ushort[] excludedUnitIDs = Array.ConvertAll(excludedUnits.Split(' '), s => ushort.Parse(s)); // Get list of excluded values
-
+                        ushort[] excludedUnitIDs = new ushort[] { };
+                        if (excludedUnits != "")
+                            excludedUnitIDs = Array.ConvertAll(excludedUnits.Split(' '), s => ushort.Parse(s)); // Get list of excluded values
                         while (excludedUnitIDs.Any(x => x.Equals(randomUnitID)))
                             randomUnitID = GetRandom(unitIds); // Ensure random value doesn't include excluded unit
                         encounter.UnitIDs[j] = randomUnitID;
