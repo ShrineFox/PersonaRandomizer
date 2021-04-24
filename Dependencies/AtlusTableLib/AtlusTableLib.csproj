@@ -121,6 +121,17 @@
     <Compile Include="Persona4Golden\Skill.cs" />
     <Compile Include="Persona4Golden\SkillTable.cs" />
     <Compile Include="Persona4\AICalculationTable.cs" />
+    <Compile Include="Persona5\AffinityFlags.cs" />
+    <Compile Include="Persona5\ElsAISegment1Entry.cs" />
+    <Compile Include="Persona5\ElsAISegment2Entry.cs" />
+    <Compile Include="Persona5\Item.cs" />
+    <Compile Include="Persona5\PartyPersona.cs" />
+    <Compile Include="Persona5\Stats.cs" />
+    <Compile Include="Persona5\UnitAffinities.cs" />
+    <Compile Include="Persona5\PersonaSkill.cs" />
+    <Compile Include="Persona5\PersonaSkillSet.cs" />
+    <Compile Include="Persona5\PersonaStats.cs" />
+    <Compile Include="Persona5\SkillElement.cs" />
     <Compile Include="Persona4\Constants.cs" />
     <Compile Include="Persona4\Encounter.cs" />
     <Compile Include="Persona4\EncounterTable.cs" />
@@ -157,8 +168,17 @@
     <Compile Include="Persona5\NameTable.cs" />
     <Compile Include="Persona5\PersonaTable.cs" />
     <Compile Include="Persona5\PlayerTable.cs" />
+    <Compile Include="Persona5\SkillAdditionalEffectFlags.cs" />
+    <Compile Include="Persona5\SkillAilmentFlags.cs" />
+    <Compile Include="Persona5\SkillElementType.cs" />
+    <Compile Include="Persona5\SkillPowerType.cs" />
+    <Compile Include="Persona5\SkillStatusEffectFlags.cs" />
     <Compile Include="Persona5\SkillTable.cs" />
+    <Compile Include="Persona5\SkillTargetFilterFlags.cs" />
+    <Compile Include="Persona5\SkillTargetSelectionMode.cs" />
+    <Compile Include="Persona5\SkillUsageDrainType.cs" />
     <Compile Include="Persona5\TalkInfoTable.cs" />
+    <Compile Include="Persona5\UnitStats.cs" />
     <Compile Include="Persona5\UnitTable.cs" />
     <Compile Include="Persona5\VisualTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,6 +186,7 @@
     <Compile Include="Serialization\TableMemberAttribute.cs" />
     <Compile Include="Serialization\TableSerializer.cs" />
     <Compile Include="Serialization\TextEncoding.cs" />
+    <Compile Include="Persona5\Skill.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DigitalDevilSaga2\" />

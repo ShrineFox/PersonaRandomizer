@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="P3FileLists.cs" />
+    <Compile Include="P5FileLists.cs" />
     <Compile Include="P4FileLists.cs" />
     <Compile Include="PersonaRandomizerForm.cs">
       <SubType>Form</SubType>

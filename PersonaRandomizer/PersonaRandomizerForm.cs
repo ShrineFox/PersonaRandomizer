@@ -19,6 +19,7 @@ namespace PersonaRandomizer
     {
         P3FileLists p3files = new P3FileLists();
         P4FileLists p4files = new P4FileLists();
+        P5FileLists p5files = new P5FileLists();
 
         public string inputFolder;
         public string tableInput;
@@ -58,7 +59,7 @@ namespace PersonaRandomizer
         private void combobox_Mode_DataSourceChanged(object sender, EventArgs e)
         {
             //Set dropdownlist for what files to randomize back to default
-            combobox_Mode.SelectedIndex = 0;
+            //combobox_Mode.SelectedIndex = 1;
         }
 
         private void btn_Randomize_Click(object sender, EventArgs e)
@@ -177,8 +178,7 @@ namespace PersonaRandomizer
                     Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options.ToArray(), true, checkBox_BossRush.Checked);
                     break;
                 case "Persona 5":
-                    if (options[0])
-                        AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, checkBox_BossRush.Checked);
+                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options.ToArray(), checkBox_BossRush.Checked);
                     break;
             }
         }
@@ -227,20 +227,15 @@ namespace PersonaRandomizer
                 foreach (var tableName in p4files.p4Tables)
                     checkedListBox_Tables.Items.Insert(0, tableName);
             else if (game == "Persona 5")
-                checkedListBox_Tables.Items.Insert(0, "ENCOUNT.TBL");
-            //Change Table Input text depending on game
-            if (game == "Persona 5")
-            {
-                lbl_TableInput.Text = "Path to ENCOUNT.TBL:";
-                checkedListBox_Tables.SetItemChecked(0, true);
-            }
-            else
-                lbl_TableInput.Text = "Extracted .TBLs Folder:";
+                foreach (var tableName in p5files.p5Tables)
+                    checkedListBox_Tables.Items.Insert(0, tableName);
+            lbl_TableInput.Text = "Extracted .TBLs Folder:";
         }
 
         private void txtBox_TableInput_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
             if (game != "Persona 5")
                 dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
