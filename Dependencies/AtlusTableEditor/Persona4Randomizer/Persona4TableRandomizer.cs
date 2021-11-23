@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AtlusTableLib.Persona4;
 using AtlusTableLib.Serialization;
 
@@ -8,14 +9,14 @@ namespace AtlusRandomizer
 {
     public class Persona4TableRandomizer : TableRandomizer
     {
-        public static void Randomize(string tableDirectoryPath, bool[] options, bool isP4G, bool bossRush = false)
+        public static void Randomize(string tableDirectoryPath, List<string> options, bool isP4G, bool bossRush = false)
         {
             foreach (var path in Directory.EnumerateFiles(tableDirectoryPath, "*.TBL"))
             {
                 switch (Path.GetFileNameWithoutExtension(path).ToUpperInvariant())
                 {
                     case "ENCOUNT":
-                        if (options[0])
+                        if (options.Any(x => x.Equals("ENCOUNT")))
                         {
                             if (bossRush)
                                 RandomizeEncounterTableBossRush(path, isP4G);
@@ -25,22 +26,22 @@ namespace AtlusRandomizer
                         break;
 
                     case "MODEL":
-                        if (options[1])
+                        if (options.Any(x => x.Equals("MODEL")))
                             RandomizeModelTable(path);
                         break;
 
                     case "MSG":
-                        if (options[2])
+                        if (options.Any(x => x.Equals("MSG")))
                             RandomizeMessageTable(path);
                         break;
 
                     case "PERSONA":
-                        if (options[3])
+                        if (options.Any(x => x.Equals("PERSONA")))
                             RandomizePersonaTable(path);
                         break;
 
                     case "SKILL":
-                        if (options[4])
+                        if (options.Any(x => x.Equals("SKILL")))
                         {
                             if (isP4G)
                                 RandomizeSkillTableP4G(path);
@@ -50,7 +51,7 @@ namespace AtlusRandomizer
                         break;
 
                     case "UNIT":
-                        if (options[5])
+                        if (options.Any(x => x.Equals("UNIT")))
                             RandomizeUnitTable(path);
                         break;
                 }

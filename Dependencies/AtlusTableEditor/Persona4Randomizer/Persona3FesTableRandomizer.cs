@@ -4,29 +4,30 @@ using System.IO;
 using AtlusScriptLib;
 using AtlusTableLib.Serialization;
 using AtlusTableLib.Persona3FES;
+using System.Linq;
 
 namespace AtlusRandomizer
 {
     public class Persona3FesTableRandomizer : TableRandomizer
     {
-        public static void Randomize(string tableDirectoryPath, bool[] options, bool bossrush = false)
+        public static void Randomize(string tableDirectoryPath, List<string> options, bool bossrush = false)
         {
             foreach (var path in Directory.EnumerateFiles(tableDirectoryPath, "*.TBL"))
             {
                 switch (Path.GetFileNameWithoutExtension(path).ToUpperInvariant())
                 {
                     case "AICALC":
-                        if (options[0])
+                        if (options.Any(x => x.Equals("AICALC")))
                             RandomizeAICalculationTable(path);
                         break;
 
                     case "AICALC_F":
-                        if (options[1])
+                        if (options.Any(x => x.Equals("AICALC_F")))
                             RandomizeAICalculationTableFES(path);
                         break;
 
                     case "ENCOUNT":
-                        if (options[2])
+                        if (options.Any(x => x.Equals("ENCOUNT")))
                         {
                             if (bossrush)
                                 RandomizeEncounterTableBossRush(path, path);
@@ -36,7 +37,7 @@ namespace AtlusRandomizer
                         break;
 
                     case "ENCOUNT_F":
-                        if (options[3])
+                        if (options.Any(x => x.Equals("ENCOUNT_F")))
                         {
                             if (bossrush)
                                 RandomizeEncounterTableBossRushFES(path, path);
@@ -46,42 +47,42 @@ namespace AtlusRandomizer
                         break;
 
                     case "MODEL":
-                        if (options[4])
+                        if (options.Any(x => x.Equals("MODEL")))
                             RandomizeModelTable(path);
                         break;
 
                     case "MSG":
-                        if (options[5])
+                        if (options.Any(x => x.Equals("MSG")))
                             RandomizeMessageTable(path);
                         break;
 
                     case "PERSONA":
-                        if (options[6])
+                        if (options.Any(x => x.Equals("PERSONA")))
                             RandomizePersonaTable(path);
                         break;
 
                     case "PERSONA_F":
-                        if (options[7])
+                        if (options.Any(x => x.Equals("PERSONA_F")))
                             RandomizePersonaTableFES(path);
                         break;
 
                     case "SKILL":
-                        if (options[8])
+                        if (options.Any(x => x.Equals("SKILL")))
                             RandomizeSkillTable(path);
                         break;
 
                     case "SKILL_F":
-                        if (options[9])
+                        if (options.Any(x => x.Equals("SKILL_F")))
                             RandomizeSkillTableFES(path);
                         break;
 
                     case "UNIT":
-                        if (options[10])
+                        if (options.Any(x => x.Equals("UNIT")))
                             RandomizeUnitTable(path);
                         break;
 
                     case "UNIT_F":
-                        if (options[11])
+                        if (options.Any(x => x.Equals("UNIT_F")))
                             RandomizeUnitTableFES(path);
                         break;
                 }

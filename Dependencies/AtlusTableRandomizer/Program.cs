@@ -5,6 +5,8 @@ using AtlusTableLib.Serialization;
 using TGELib.IO;
 using AtlusTableLib.Persona5;
 using System.Linq;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace AtlusTableRandomizer
 {
@@ -17,56 +19,71 @@ namespace AtlusTableRandomizer
 
         }
 
-        public static void Randomize(string tableDirectoryPath, bool[] options, bool bossRush = false, string excludedUnits = "")
+        public static void Randomize(string tableDirectoryPath, List<string> options, bool bossRush = false, string excludedUnits = "")
         {
+            if (File.Exists(tableDirectoryPath))
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "PAKPack.exe");
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.StartInfo.CreateNoWindow = true;
+                string newPath = Path.Combine(Path.Combine(Path.GetDirectoryName(tableDirectoryPath), Path.GetFileNameWithoutExtension(tableDirectoryPath)), "table");
+                process.StartInfo.Arguments = $"unpack \"{tableDirectoryPath}\" \"{newPath}\"";
+                process.Start();
+                process.Close();
+                tableDirectoryPath = newPath;
+            }
             foreach (var path in Directory.EnumerateFiles(tableDirectoryPath, "*.TBL"))
             {
                 switch (Path.GetFileNameWithoutExtension(path).ToUpperInvariant())
                 {
                     case "ENCOUNT":
-                        if (options[0])
+                        if (options.Any(x => x.Equals("ENCOUNT")))
                         {
                             RandomizeEncounterTable(path, bossRush, excludedUnits);
                         }
                         break;
 
                     case "PERSONA":
-                        if (options[1])
+                        if (options.Any(x => x.Equals("PERSONA")))
                         {
                             RandomizePersonaTable(path);
                         }
                         break;
 
                     case "UNIT":
-                        if (options[2])
+                        if (options.Any(x => x.Equals("UNIT")))
                         {
                             RandomizeUnitTable(path);
                         }
                         break;
 
                     case "SKILL":
-                        if (options[3])
+                        if (options.Any(x => x.Equals("SKILL")))
                         {
                             RandomizeSkillTable(path);
                         }
                         break;
 
                     case "ITEM":
-                        if (options[4])
+                        if (options.Any(x => x.Equals("ITEM")))
                         {
                             RandomizeItemTable(path);
                         }
                         break;
 
                     case "NAME":
-                        if (options[5])
+                        if (options.Any(x => x.Equals("NAME")))
                         {
                             RandomizeNameTable(path);
                         }
                         break;
 
                     case "ELSAI":
-                        RandomizeElsaiTable(path);
+                        if (options.Any(x => x.Equals("ELSAI")))
+                        {
+                            RandomizeElsaiTable(path);
+                        }
                         break;
                 }
             }
@@ -190,6 +207,106 @@ namespace AtlusTableRandomizer
                 encounter.MusicId = GetRandom(musicIds);
             }
             
+
+            TableSerializer.Serialize(table, output, Endianness.BigEndian);
+
+        }
+
+        private static void RandomizeEncounterTableRoyal(string tablePath, bool bossRush, string excludedUnits = "")
+        {
+            string output = tablePath + "_Randomized";
+            var table = TableSerializer.Deserialize<AtlusTableLib.Persona5Royal.EncounterTable>(tablePath);
+
+            var encounterTypes = new List<ushort>();
+            var field02s = new List<ushort>();
+            var field04s = new List<ushort>();
+            var field06s = new List<ushort>();
+            var unitIds = new List<ushort>();
+            var fieldAndRoomIds = new List<Tuple<ushort, ushort>>();
+            var musicIds = new List<ushort>();
+
+            foreach (var encounter in table.Encounters)
+            {
+                if (!encounterTypes.Contains(encounter.EncounterType))
+                    encounterTypes.Add(encounter.EncounterType);
+
+                if (!field02s.Contains(encounter.Field02))
+                    field02s.Add(encounter.Field02);
+
+                if (!field04s.Contains(encounter.Field04))
+                    field04s.Add(encounter.Field04);
+
+                if (!field06s.Contains(encounter.Field06))
+                    field06s.Add(encounter.Field06);
+
+                for (int i = 0; i < encounter.UnitIDs.Length; i++)
+                {
+                    if (encounter.UnitIDs[i] != 0)
+                        if (!unitIds.Contains(encounter.UnitIDs[i]))
+                        {
+                            unitIds.Add(encounter.UnitIDs[i]);
+                        }
+                }
+
+                var fieldAndRoomTuple = new Tuple<ushort, ushort>(encounter.FieldId, encounter.RoomId);
+                if (!fieldAndRoomIds.Contains(fieldAndRoomTuple))
+                    fieldAndRoomIds.Add(fieldAndRoomTuple);
+
+                if (!musicIds.Contains(encounter.MusicId))
+                    musicIds.Add(encounter.MusicId);
+            }
+
+            for (int i = 0; i < table.Encounters.Length; i++)
+            {
+                ref var encounter = ref table.Encounters[i];
+
+                //encounter.EncounterType = GetRandom(encounterTypes);
+                //encounter.Field02 = GetRandom(field02s);
+                //encounter.Field04 = GetRandom(field04s);
+                //encounter.Field06 = GetRandom(field06s);
+                if (bossRush)
+                {
+                    encounter.EncounterType = 0;
+                    encounter.Field02 = 0;
+                    encounter.Field04 = 0;
+                    encounter.Field06 = 0;
+                }
+                /*
+                if (bossRushAlt)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        encounter.UnitIDs[j] = 0;
+                    }
+
+                    encounter.UnitIDs[0] = (ushort)Random.Next(190, 351);
+                }
+                else
+                {*/
+                for (int j = 0; j < Random.Next(5); j++)
+                {
+                    if (bossRush)
+                    {
+                        encounter.UnitIDs[j] = (ushort)Random.Next(190, 351);
+                    }
+                    else
+                    {
+                        ushort randomUnitID = GetRandom(unitIds); // Get initial random value
+                        ushort[] excludedUnitIDs = new ushort[] { };
+                        if (excludedUnits != "")
+                            excludedUnitIDs = Array.ConvertAll(excludedUnits.Split(' '), s => ushort.Parse(s)); // Get list of excluded values
+                        while (excludedUnitIDs.Any(x => x.Equals(randomUnitID)))
+                            randomUnitID = GetRandom(unitIds); // Ensure random value doesn't include excluded unit
+                        encounter.UnitIDs[j] = randomUnitID;
+                    }
+                }
+
+                var fieldAndRoomTuple = GetRandom(fieldAndRoomIds);
+                encounter.FieldId = fieldAndRoomTuple.Item1;
+                encounter.RoomId = fieldAndRoomTuple.Item2;
+                encounter.MusicId = GetRandom(musicIds);
+            }
+
 
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
 

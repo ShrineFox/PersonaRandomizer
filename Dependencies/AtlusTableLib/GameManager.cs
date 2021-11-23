@@ -118,6 +118,7 @@ namespace AtlusTableLib
         Persona5PS3NA,
         Persona5PS4NA,
         Persona5PS3EU,
-        Persona5PS4EU
+        Persona5PS4EU,
+        Persona5Royal
     }
 }

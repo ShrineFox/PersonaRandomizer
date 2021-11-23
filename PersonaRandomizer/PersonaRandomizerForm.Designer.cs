@@ -78,7 +78,7 @@ namespace PersonaRandomizer
             this.lbl_Mode.Location = new System.Drawing.Point(7, 19);
             this.lbl_Mode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Mode.Name = "lbl_Mode";
-            this.lbl_Mode.Size = new System.Drawing.Size(46, 16);
+            this.lbl_Mode.Size = new System.Drawing.Size(47, 17);
             this.lbl_Mode.TabIndex = 5;
             this.lbl_Mode.Text = "Mode:";
             // 
@@ -109,7 +109,7 @@ namespace PersonaRandomizer
             this.lbl_InputFolder.Location = new System.Drawing.Point(7, 54);
             this.lbl_InputFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_InputFolder.Name = "lbl_InputFolder";
-            this.lbl_InputFolder.Size = new System.Drawing.Size(81, 16);
+            this.lbl_InputFolder.Size = new System.Drawing.Size(87, 17);
             this.lbl_InputFolder.TabIndex = 7;
             this.lbl_InputFolder.Text = "Input Folder:";
             // 
@@ -119,7 +119,7 @@ namespace PersonaRandomizer
             this.lbl_OutputFolder.Location = new System.Drawing.Point(7, 113);
             this.lbl_OutputFolder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_OutputFolder.Name = "lbl_OutputFolder";
-            this.lbl_OutputFolder.Size = new System.Drawing.Size(91, 16);
+            this.lbl_OutputFolder.Size = new System.Drawing.Size(99, 17);
             this.lbl_OutputFolder.TabIndex = 9;
             this.lbl_OutputFolder.Text = "Output Folder:";
             // 
@@ -171,7 +171,7 @@ namespace PersonaRandomizer
             this.lbl_Usage.Location = new System.Drawing.Point(7, 168);
             this.lbl_Usage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Usage.Name = "lbl_Usage";
-            this.lbl_Usage.Size = new System.Drawing.Size(0, 16);
+            this.lbl_Usage.Size = new System.Drawing.Size(0, 17);
             this.lbl_Usage.TabIndex = 10;
             // 
             // tabPage_Tables
@@ -196,7 +196,7 @@ namespace PersonaRandomizer
             this.lbl_ExcludedUnits.Location = new System.Drawing.Point(11, 162);
             this.lbl_ExcludedUnits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_ExcludedUnits.Name = "lbl_ExcludedUnits";
-            this.lbl_ExcludedUnits.Size = new System.Drawing.Size(255, 16);
+            this.lbl_ExcludedUnits.Size = new System.Drawing.Size(268, 17);
             this.lbl_ExcludedUnits.TabIndex = 19;
             this.lbl_ExcludedUnits.Text = "Excluded Unit IDs (separated by spaces):";
             // 
@@ -214,7 +214,7 @@ namespace PersonaRandomizer
             this.checkBox_BossRush.AutoSize = true;
             this.checkBox_BossRush.Location = new System.Drawing.Point(229, 18);
             this.checkBox_BossRush.Name = "checkBox_BossRush";
-            this.checkBox_BossRush.Size = new System.Drawing.Size(92, 20);
+            this.checkBox_BossRush.Size = new System.Drawing.Size(98, 21);
             this.checkBox_BossRush.TabIndex = 17;
             this.checkBox_BossRush.Text = "Boss Rush";
             this.checkBox_BossRush.UseVisualStyleBackColor = true;
@@ -234,7 +234,7 @@ namespace PersonaRandomizer
             this.lbl_TableInput.Location = new System.Drawing.Point(11, 20);
             this.lbl_TableInput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_TableInput.Name = "lbl_TableInput";
-            this.lbl_TableInput.Size = new System.Drawing.Size(147, 16);
+            this.lbl_TableInput.Size = new System.Drawing.Size(156, 17);
             this.lbl_TableInput.TabIndex = 15;
             this.lbl_TableInput.Text = "Extracted .TBLs Folder:";
             // 
@@ -254,7 +254,7 @@ namespace PersonaRandomizer
             this.lbl_Game.Location = new System.Drawing.Point(13, 13);
             this.lbl_Game.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Game.Name = "lbl_Game";
-            this.lbl_Game.Size = new System.Drawing.Size(48, 16);
+            this.lbl_Game.Size = new System.Drawing.Size(50, 17);
             this.lbl_Game.TabIndex = 10;
             this.lbl_Game.Text = "Game:";
             // 
@@ -264,7 +264,7 @@ namespace PersonaRandomizer
             this.lbl_Status.Location = new System.Drawing.Point(16, 38);
             this.lbl_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.Size = new System.Drawing.Size(0, 16);
+            this.lbl_Status.Size = new System.Drawing.Size(0, 17);
             this.lbl_Status.TabIndex = 13;
             // 
             // comboBox_Game
@@ -275,7 +275,8 @@ namespace PersonaRandomizer
             "Persona 3 FES",
             "Persona 4",
             "Persona 4 Golden",
-            "Persona 5"});
+            "Persona 5",
+            "Persona 5 Royal"});
             this.comboBox_Game.Location = new System.Drawing.Point(71, 10);
             this.comboBox_Game.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Game.Name = "comboBox_Game";
@@ -287,7 +288,7 @@ namespace PersonaRandomizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 311);
+            this.ClientSize = new System.Drawing.Size(382, 303);
             this.Controls.Add(this.comboBox_Game);
             this.Controls.Add(this.lbl_Status);
             this.Controls.Add(this.lbl_Game);

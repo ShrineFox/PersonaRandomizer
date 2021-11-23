@@ -162,23 +162,24 @@ namespace PersonaRandomizer
         private void RandomizeTables()
         {
             lbl_Status.Text = "Randomizing TBL data...";
-            List<bool> options = new List<bool>();
-            for (int i = 0; i < checkedListBox_Tables.Items.Count; i++)
-                options.Add(ConvertCheckState(checkedListBox_Tables.GetItemCheckState(i)));
+            List<string> options = new List<string>();
+            foreach (var item in checkedListBox_Tables.CheckedItems)
+                options.Add(item.ToString());
 
             switch(game)
             {
                 case "Persona 3 FES":
-                    Persona3FesTableRandomizer.Randomize(txtBox_TableInput.Text, options.ToArray(), checkBox_BossRush.Checked);
+                    Persona3FesTableRandomizer.Randomize(txtBox_TableInput.Text, options, checkBox_BossRush.Checked);
                     break;
                 case "Persona 4":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options.ToArray(), false, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, false, checkBox_BossRush.Checked);
                     break;
                 case "Persona 4 Golden":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options.ToArray(), true, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, true, checkBox_BossRush.Checked);
                     break;
                 case "Persona 5":
-                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options.ToArray(), checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
+                case "Persona 5 Royal":
+                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options, checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
                     break;
             }
         }
@@ -226,7 +227,7 @@ namespace PersonaRandomizer
             else if (game == "Persona 4" || game == "Persona 4 Golden")
                 foreach (var tableName in p4files.p4Tables)
                     checkedListBox_Tables.Items.Insert(0, tableName);
-            else if (game == "Persona 5")
+            else if (game == "Persona 5" || game == "Persona 5 Royal")
                 foreach (var tableName in p5files.p5Tables)
                     checkedListBox_Tables.Items.Insert(0, tableName);
             lbl_TableInput.Text = "Extracted .TBLs Folder:";
@@ -236,8 +237,8 @@ namespace PersonaRandomizer
         {
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
             dialog.IsFolderPicker = true;
-            if (game != "Persona 5")
-                dialog.IsFolderPicker = true;
+            if (game == "Persona 5" || game == "Persona 5 Royal")
+                dialog.IsFolderPicker = false;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 tableInput = dialog.FileName;
@@ -256,7 +257,7 @@ namespace PersonaRandomizer
         private void RandomizeType_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Only allow randomizing P5/P4G tables and not files
-            if (game == "Persona 5" || game == "Persona 4 Golden")
+            if (game == "Persona 5" || game == "Persona 5 Royal" || game == "Persona 4 Golden")
             {
                 if (tabControl_RandomizeType.SelectedIndex != 0)
                     btn_Randomize.Enabled = true;
