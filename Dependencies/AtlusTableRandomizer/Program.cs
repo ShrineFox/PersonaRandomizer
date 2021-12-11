@@ -364,25 +364,7 @@ namespace AtlusTableRandomizer
         {
             string output = tablePath + "_Randomized";
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.UnitTable>(tablePath);
-
-            string[] strings = new string[500];
-
-            for (int i = 0; i < table.Units.Length; i++)
-            {
-                strings[i] = i + ":\t";
-
-                var unit = table.Units[i];
-                var properties = unit.GetType().GetProperties();
-
-                foreach (var property in properties)
-                {
-                    strings[i] = strings[i] + property.GetValue(unit) + "\t";
-                }
-            }
-
-            File.WriteAllLines(tablePath + ".txt", strings);
-
-            /*
+            
             var arcanas = new List<byte>();
             var levels = new List<byte>();
             var hps = new List<int>();
@@ -460,7 +442,7 @@ namespace AtlusTableRandomizer
 
                 affinity.AffinityFlags = GetRandom(personaAffinities);
             }
-            */
+            
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
