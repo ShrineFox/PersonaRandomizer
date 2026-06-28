@@ -288,6 +288,9 @@ namespace AtlusRandomizer
 
         private static void RandomizeMessageTable(string tablePath)
         {
+            if (!IsAPIKeyValid())
+                return;
+
             string[] translated;
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
             BadTranslator.Translate(table.ArcanaNames, out translated);
@@ -301,6 +304,7 @@ namespace AtlusRandomizer
             TableSerializer.Serialize(table, tablePath + "_Randomized");
         }
 
+        /*
         private static List<Tuple<ushort, ushort>> GetFieldAndRoomIds(string fieldpath)
         {
             var fieldAndRoomIds = new List<Tuple<ushort, ushort>>();
@@ -315,6 +319,7 @@ namespace AtlusRandomizer
 
             return fieldAndRoomIds;
         }
+        */
 
         public static List<Tuple<ushort, ushort>> p4gfields = new List<Tuple<ushort, ushort>>()
         {

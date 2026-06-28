@@ -1,10 +1,12 @@
-﻿using System;
+﻿using AtlusFileSystemLibrary;
+using AtlusFileSystemLibrary.FileSystems.PAK;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PersonaRandomizer
@@ -13,77 +15,93 @@ namespace PersonaRandomizer
     {
         public void ADX(string inputFolder, string outputFolder, List<string> fileList)
         {
-            List<string> adxFiles = new List<string>();
-            try
-            {
-                foreach (string file in Directory.GetFiles(inputFolder, "*.ADX", System.IO.SearchOption.AllDirectories))
-                {
-                    long length = new FileInfo(file).Length;
-                    if (length > 540672)
-                    {
-                        adxFiles.Add(file);
-                    }
-                }
+            if (!Directory.Exists(inputFolder))
+                return;
 
-                Randomize.Files(adxFiles, fileList, outputFolder);
-            }
-            catch
+            List<string> adxFiles = new List<string>();
+
+            foreach (string file in Directory.GetFiles(inputFolder, "*.ADX", System.IO.SearchOption.AllDirectories))
             {
-                MessageBox.Show("Make sure you selected a valid input and output folder!","Something went wrong",MessageBoxButtons.OK);
+                long length = new FileInfo(file).Length;
+                if (length > 540672)
+                {
+                    // Use file as randomized track if it's not silent/ambient
+                    adxFiles.Add(file);
+                }
             }
+
+            ShuffleAndCopyFiles(adxFiles, fileList, outputFolder);
         }
 
         public void RMD(string inputFolder, string outputFolder, List<string> fileList)
         {
-            try
-            {
-                List<string> rmdFiles = new List<string>(Directory.GetFiles(inputFolder, "*.RMD", System.IO.SearchOption.AllDirectories));
-                Randomize.Files(rmdFiles, fileList, outputFolder);
-            }
-            catch
-            {
-                MessageBox.Show("Make sure you selected a valid input and output folder!", "Something went wrong", MessageBoxButtons.OK);
-            }
+            if (!Directory.Exists(inputFolder))
+                return;
 
+            List<string> rmdFiles = new List<string>(Directory.GetFiles(inputFolder, "*.RMD", System.IO.SearchOption.AllDirectories));
+            ShuffleAndCopyFiles(rmdFiles, fileList, outputFolder);
+        }
+
+        public void PAC(string inputFolder, string outputFolder, List<string> fileList)
+        {
+            if (!Directory.Exists(inputFolder))
+                return;
+
+            // Shufle all RMD files from input folder
+            List<string> rmdFiles = new List<string>(Directory.GetFiles(inputFolder, "*.RMD", System.IO.SearchOption.AllDirectories));
+            var shuffledFiles = ShuffleFiles(rmdFiles, fileList, outputFolder);
+            
+            // Create replacement PACs in output folder containing shuffled RMDs
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                PAKFileSystem pak = new PAKFileSystem();
+                pak.AddFile(Path.GetFileNameWithoutExtension(fileList[i]) + ".RMD", rmdFiles[i], ConflictPolicy.Replace);
+
+                string outPath = $"{outputFolder}\\{fileList[i].Split('\\').Last()}";
+                pak.Save(Path.Combine(outPath, Path.GetFileName(fileList[i])));
+                
+            }
         }
 
         public void BIN(string inputFolder, string outputFolder, List<string> fileList)
         {
-            try
-            {
-                List<string> binFiles = new List<string>(Directory.GetFiles(inputFolder, "*.BIN", System.IO.SearchOption.AllDirectories));
-                Randomize.Files(binFiles, fileList, outputFolder);
-            }
-            catch
-            {
-                MessageBox.Show("Make sure you selected a valid input and output folder!", "Something went wrong", MessageBoxButtons.OK);
-            }
+            if (!Directory.Exists(inputFolder))
+                return;
 
+            List<string> binFiles = new List<string>(Directory.GetFiles(inputFolder, "*.BIN", System.IO.SearchOption.AllDirectories));
+            ShuffleAndCopyFiles(binFiles, fileList, outputFolder);
         }
 
-        public static void Files(List<string> filteredFiles, List<string> fileList, string outputFolder)
+        public static void ShuffleAndCopyFiles(List<string> filteredFiles, List<string> fileList, string outputFolder)
         {
+            var shuffledFiles = ShuffleFiles(filteredFiles, fileList, outputFolder);
+            CopyShuffledFiles(shuffledFiles, fileList, outputFolder);
+        }
 
+        public static string[] ShuffleFiles(List<string> filteredFiles, List<string> fileList, string outputFolder)
+        {
             Random rng = new Random();
-            string[] randomizedFiles = filteredFiles.OrderBy(x => rng.Next()).ToArray();
+            string[] shuffledFiles = filteredFiles.OrderBy(x => rng.Next()).ToArray();
 
-            while (fileList.Count > randomizedFiles.Length)
+            while (fileList.Count > shuffledFiles.Length)
             {
                 List<string> newList = new List<string>();
-                newList.AddRange(randomizedFiles);
-                newList.AddRange(randomizedFiles);
-                randomizedFiles = newList.ToArray();
+                newList.AddRange(shuffledFiles);
+                newList.AddRange(shuffledFiles); // Copy list to itself to double the size, covering length of fileList entries
+                shuffledFiles = newList.ToArray();
             }
+
+            return shuffledFiles;
+        }
+
+        public static void CopyShuffledFiles(string[] shuffledFiles, List<string> fileList, string outputFolder)
+        {
+            Directory.CreateDirectory(outputFolder);
 
             for (int i = 0; i < fileList.Count; i++)
             {
                 string newFileName = $"{outputFolder}\\{fileList[i].Split('\\').Last()}";
-
-                if (File.Exists(newFileName))
-                {
-                    File.Delete(newFileName);
-                }
-                File.Copy(randomizedFiles[i], newFileName);
+                File.Copy(shuffledFiles[i], newFileName, true);
             }
         }
     }

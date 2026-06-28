@@ -73,7 +73,7 @@ namespace PersonaRandomizer
                     RandomizeFiles();
                 else
                     RandomizeTables();
-                lbl_Status.Text = "Done randomizing!";
+                MessageBox.Show("Done randomizing!");
             #if !DEBUG
             }
             catch(Exception ex)
@@ -119,6 +119,9 @@ namespace PersonaRandomizer
                     case 8: //WEAPON
                         randomize.RMD(inputFolder, outputFolder, p3files.WEAPON);
                         break;
+                    case 9: // MODEL/PACK
+                        randomize.PAC(inputFolder, outputFolder, p3files.MODELPACK);
+                        break;
                 }
             }
             else if (game == "Persona 4")
@@ -154,6 +157,9 @@ namespace PersonaRandomizer
                         break;
                     case 9: //WEAPON
                         randomize.RMD(inputFolder, outputFolder, p4files.PERSONA);
+                        break;
+                    case 10: // MODEL/PACK
+                        //randomize.PAC(inputFolder, outputFolder, p4files.MODELPACK);
                         break;
                 }
             }

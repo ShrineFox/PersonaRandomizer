@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>PersonaRandomizer</RootNamespace>
     <AssemblyName>PersonaRandomizer</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -104,9 +104,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="google_translate_api_key.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\tge-was-taken\AtlusFileSystemLibrary\Source\AtlusFileSystemLibrary\AtlusFileSystemLibrary.csproj">
+      <Project>{9960b785-6207-44e8-ba42-ec7f6f785344}</Project>
+      <Name>AtlusFileSystemLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dependencies\AtlusTableEditor\Persona4Randomizer\AtlusRandomizer.csproj">
       <Project>{3e4db24b-7e16-417b-a461-5d3ea32accb2}</Project>
       <Name>AtlusRandomizer</Name>

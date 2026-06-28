@@ -29,7 +29,8 @@ namespace PersonaRandomizer
             "MODEL/NPC2",
             "MODEL/SYMBOL",
             "MODEL/WEAPON",
-            "MODEL_BTL/PERSONA"
+            "MODEL_BTL/PERSONA",
+            "MODEL_BTL/PACK"
         };
 
         public List<string> BGM = new List<string>()

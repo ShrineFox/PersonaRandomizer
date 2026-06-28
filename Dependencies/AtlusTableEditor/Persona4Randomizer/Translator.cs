@@ -1,11 +1,12 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using GoogleTranslateNet;
 
 namespace AtlusRandomizer
 {
     public static class Translator
     {
-        private static readonly GoogleTranslate sGoogleTranslate = new GoogleTranslate("google_translate_api_key_goes_here");
+        private static readonly GoogleTranslate sGoogleTranslate = new GoogleTranslate(File.ReadAllText("google_translate_api_key.txt"));
 
         public static void Translate(string[] array, params Language[] languages)
         {

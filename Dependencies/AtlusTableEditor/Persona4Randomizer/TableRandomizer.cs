@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using AtlusScriptLib;
 using AtlusTableLib.Serialization;
 using TGELib.Reflection;
@@ -91,6 +92,16 @@ namespace AtlusRandomizer
             }
 
             return membernameToDistinctValueMap;
+        }
+
+        public static bool IsAPIKeyValid()
+        {
+            if (File.Exists("google_translate_api_key.txt")
+                && File.ReadAllText("google_translate_api_key.txt") != "google_translate_api_key_goes_here")
+                return true;
+
+            MessageBox.Show("Google Translate API key is invalid! Save your key to google_translate_api_key.txt");
+            return false;
         }
     }
 }
