@@ -93,34 +93,34 @@ namespace PersonaRandomizer
                 switch (i)
                 {
                     case 0: //BGM
-                        randomize.ADX(inputFolder, outputFolder, p3files.BGM);
+                        randomize.ADX(inputFolder, Path.Combine(outputFolder, "BGM"), p3files.BGM);
                         break;
                     case 1: //BUSTUP
-                        randomize.BIN(inputFolder, outputFolder, p3files.BUSTUP);
+                        randomize.BIN(inputFolder, Path.Combine(outputFolder, "DATA\\BUSTUP"), p3files.BUSTUP);
                         break;
                     case 2: //FIELD/RMD
-                        randomize.RMD(inputFolder, outputFolder, p3files.FIELDRMD);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\FIELD\\RMD"), p3files.FIELDRMD);
                         break;
                     case 3: //FACILITYP
-                        randomize.RMD(inputFolder, outputFolder, p3files.FACILITYP);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\FACILITYP"), p3files.FACILITYP);
                         break;
                     case 4: //FIELD
-                        randomize.RMD(inputFolder, outputFolder, p3files.FIELD);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\FIELD"), p3files.FIELD);
                         break;
                     case 5: //NPC
-                        randomize.RMD(inputFolder, outputFolder, p3files.NPC);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\NPC"), p3files.NPC);
                         break;
                     case 6: //PERSONA
-                        randomize.RMD(inputFolder, outputFolder, p3files.PERSONA);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\PERSONA"), p3files.PERSONA);
                         break;
                     case 7: //SYMBOL
-                        randomize.RMD(inputFolder, outputFolder, p3files.SYMBOL);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\SYMBOL"), p3files.SYMBOL);
                         break;
                     case 8: //WEAPON
-                        randomize.RMD(inputFolder, outputFolder, p3files.WEAPON);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\WEAPON"), p3files.WEAPON);
                         break;
                     case 9: // MODEL/PACK
-                        randomize.PAC(inputFolder, outputFolder, p3files.MODELPACK);
+                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\PACK"), p3files.MODELPACK);
                         break;
                 }
             }
@@ -129,37 +129,40 @@ namespace PersonaRandomizer
                 switch (i)
                 {
                     case 0: //BGM
-                        randomize.ADX(inputFolder, outputFolder, p4files.BGM);
+                        randomize.ADX(inputFolder, Path.Combine(outputFolder, "BGM"), p4files.BGM);
                         break;
                     case 1: //BUSTUP
-                        randomize.BIN(inputFolder, outputFolder, p4files.BUSTUP);
+                        randomize.BIN(inputFolder, Path.Combine(outputFolder, "DATA\\BUSTUP"), p4files.BUSTUP);
                         break;
                     case 2: //FIELD/RMD
-                        randomize.RMD(inputFolder, outputFolder, p4files.FIELDRMD);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\FIELD\\RMD"), p4files.FIELDRMD);
                         break;
                     case 3: //FACILITYP
-                        randomize.RMD(inputFolder, outputFolder, p4files.FACILITYP);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\FACILITYP"), p4files.FACILITYP);
                         break;
                     case 4: //FIELD
-                        randomize.RMD(inputFolder, outputFolder, p4files.FIELD);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\FIELD"), p4files.FIELD);
                         break;
                     case 5: //NPC
-                        randomize.RMD(inputFolder, outputFolder, p4files.NPC);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\NPC"), p4files.NPC);
                         break;
                     case 6: //NPC2
-                        randomize.RMD(inputFolder, outputFolder, p4files.NPC2);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\NPC2"), p4files.NPC2);
                         break;
                     case 7: //SYMBOL
-                        randomize.RMD(inputFolder, outputFolder, p4files.SYMBOL);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\SYMBOL"), p4files.SYMBOL);
                         break;
                     case 8: //WEAPON
-                        randomize.RMD(inputFolder, outputFolder, p4files.WEAPON);
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\WEAPON"), p4files.WEAPON);
                         break;
-                    case 9: //WEAPON
-                        randomize.RMD(inputFolder, outputFolder, p4files.PERSONA);
+                    case 9: //PERSONA
+                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL_BTL\\PERSONA"), p4files.PERSONA);
                         break;
-                    case 10: // MODEL/PACK
-                        //randomize.PAC(inputFolder, outputFolder, p4files.MODELPACK);
+                    case 10: // MODEL_BTL/PACK
+                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL_BTL\\PACK"), p4files.MODELBTLPACK);
+                        break;
+                    case 11: // MODEL/PACK
+                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\PACK"), p4files.MODELPACK);
                         break;
                 }
             }

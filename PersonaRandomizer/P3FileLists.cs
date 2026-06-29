@@ -37,16 +37,16 @@ namespace PersonaRandomizer
 
         public List<string> p3Dropdown = new List<string>()
         {
-            "BGM",
-            "BUSTUP",
-            "FIELD/RMD",
-            "MODEL/FACILITYP",
-            "MODEL/FIELD",
-            "MODEL/NPC",
-            "MODEL/PERSONA",
-            "MODEL/SYMBOL",
-            "MODEL/WEAPON",
-            "MODEL/PACK"
+            "BGM.CVM",
+            "DATA.CVM/BUSTUP",
+            "DATA.CVM/FIELD/RMD",
+            "BTL.CVM/MODEL/FACILITYP",
+            "BTL.CVM/MODEL/FIELD",
+            "BTL.CVM/MODEL/NPC",
+            "BTL.CVM/MODEL/PERSONA",
+            "BTL.CVM/MODEL/SYMBOL",
+            "BTL.CVM/MODEL/WEAPON",
+            "BTL.CVM/MODEL/PACK"
         };
 
         public List<string> BGM = new List<string>()
