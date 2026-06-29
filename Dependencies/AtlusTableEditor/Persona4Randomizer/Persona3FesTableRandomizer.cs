@@ -10,7 +10,7 @@ namespace AtlusRandomizer
 {
     public class Persona3FesTableRandomizer : TableRandomizer
     {
-        public static void Randomize(string tableDirectoryPath, List<string> options, string outputFolder, bool bossrush = false)
+        public static void Randomize(string tableDirectoryPath, List<string> options, string modFolder, bool bossrush = false)
         {
             if (!Directory.Exists(tableDirectoryPath))
                 return;
@@ -20,99 +20,99 @@ namespace AtlusRandomizer
                 switch (Path.GetFileNameWithoutExtension(path).ToUpperInvariant())
                 {
                     case "AICALC":
-                        if (options.Any(x => x.Equals("AICALC")))
-                            RandomizeAICalculationTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("AICALC.TBL")))
+                            RandomizeAICalculationTable(path, modFolder);
                         break;
 
                     case "AICALC_F":
-                        if (options.Any(x => x.Equals("AICALC_F")))
-                            RandomizeAICalculationTableFES(path, outputFolder);
+                        if (options.Any(x => x.Equals("AICALC_F.TBL")))
+                            RandomizeAICalculationTableFES(path, modFolder);
                         break;
 
                     case "ENCOUNT":
-                        if (options.Any(x => x.Equals("ENCOUNT")))
+                        if (options.Any(x => x.Equals("ENCOUNT.TBL")))
                         {
                             if (bossrush)
-                                RandomizeEncounterTableBossRush(path, outputFolder);
+                                RandomizeEncounterTableBossRush(path, modFolder);
                             else
-                                RandomizeEncounterTable(path, outputFolder);
+                                RandomizeEncounterTable(path, modFolder);
                         }
                         break;
 
                     case "ENCOUNT_F":
-                        if (options.Any(x => x.Equals("ENCOUNT_F")))
+                        if (options.Any(x => x.Equals("ENCOUNT_F.TBL")))
                         {
                             if (bossrush)
-                                RandomizeEncounterTableBossRushFES(path, outputFolder);
+                                RandomizeEncounterTableBossRushFES(path, modFolder);
                             else
-                                RandomizeEncounterTableFES(path, outputFolder);
+                                RandomizeEncounterTableFES(path, modFolder);
                         }
                         break;
 
                     case "MODEL":
-                        if (options.Any(x => x.Equals("MODEL")))
-                            RandomizeModelTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("MODEL.TBL")))
+                            RandomizeModelTable(path, modFolder);
                         break;
 
                     case "MSG":
-                        if (options.Any(x => x.Equals("MSG")))
-                            RandomizeMessageTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("MSG.TBL")))
+                            RandomizeMessageTable(path, modFolder);
                         break;
 
                     case "PERSONA":
-                        if (options.Any(x => x.Equals("PERSONA")))
-                            RandomizePersonaTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("PERSONA.TBL")))
+                            RandomizePersonaTable(path, modFolder);
                         break;
 
                     case "PERSONA_F":
-                        if (options.Any(x => x.Equals("PERSONA_F")))
-                            RandomizePersonaTableFES(path, outputFolder);
+                        if (options.Any(x => x.Equals("PERSONA_F.TBL")))
+                            RandomizePersonaTableFES(path, modFolder);
                         break;
 
                     case "SKILL":
-                        if (options.Any(x => x.Equals("SKILL")))
-                            RandomizeSkillTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("SKILL.TBL")))
+                            RandomizeSkillTable(path, modFolder);
                         break;
 
                     case "SKILL_F":
-                        if (options.Any(x => x.Equals("SKILL_F")))
-                            RandomizeSkillTableFES(path, outputFolder);
+                        if (options.Any(x => x.Equals("SKILL_F.TBL")))
+                            RandomizeSkillTableFES(path, modFolder);
                         break;
 
                     case "UNIT":
-                        if (options.Any(x => x.Equals("UNIT")))
-                            RandomizeUnitTable(path, outputFolder);
+                        if (options.Any(x => x.Equals("UNIT.TBL")))
+                            RandomizeUnitTable(path, modFolder);
                         break;
 
                     case "UNIT_F":
-                        if (options.Any(x => x.Equals("UNIT_F")))
-                            RandomizeUnitTableFES(path, outputFolder);
+                        if (options.Any(x => x.Equals("UNIT_F.TBL")))
+                            RandomizeUnitTableFES(path, modFolder);
                         break;
                 }
             }
         }
 
-        private static void RandomizeAICalculationTable(string tablePath, string outputFolder)
+        private static void RandomizeAICalculationTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<AICalculationTable>(tablePath);
             table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
             table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
             
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeAICalculationTableFES(string tablePath, string outputFolder)
+        private static void RandomizeAICalculationTableFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<AICalculationTableF>(tablePath);
             table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
             table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
             
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeUnitTable(string tablePath, string outputFolder)
+        private static void RandomizeUnitTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<UnitTable>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -139,10 +139,10 @@ namespace AtlusRandomizer
                 unit.AttackDamage = GetRandom<ushort>(unitValues[nameof(unit.AttackDamage)]);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeUnitTableFES(string tablePath, string outputFolder)
+        private static void RandomizeUnitTableFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<UnitTableF>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -169,10 +169,10 @@ namespace AtlusRandomizer
                 unit.AttackDamage = GetRandom<ushort>(unitValues[nameof(unit.AttackDamage)]);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeSkillTable(string tablePath, string outputFolder)
+        private static void RandomizeSkillTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<SkillTable>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -204,10 +204,10 @@ namespace AtlusRandomizer
                 skill.CriticalChance = GetRandom<byte>(skillValues[nameof(skill.CriticalChance)]);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeSkillTableFES(string tablePath, string outputFolder)
+        private static void RandomizeSkillTableFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<SkillTableF>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -239,10 +239,10 @@ namespace AtlusRandomizer
                 skill.CriticalChance = GetRandom<byte>(skillValues[nameof(skill.CriticalChance)]);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizePersonaTable(string tablePath, string outputFolder)
+        private static void RandomizePersonaTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<PersonaTable>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -278,7 +278,7 @@ namespace AtlusRandomizer
             TableSerializer.Serialize(table, tablePath + ".randomized");
         }
 
-        private static void RandomizePersonaTableFES(string tablePath, string outputFolder)
+        private static void RandomizePersonaTableFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<PersonaTableF>(tablePath);
             var values = GetTableDistinctValues(table);
@@ -311,10 +311,10 @@ namespace AtlusRandomizer
                 }
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeModelTable(string tablePath, string outputFolder)
+        private static void RandomizeModelTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<ModelTable>(tablePath);
 
@@ -345,10 +345,10 @@ namespace AtlusRandomizer
                 //modelInfo.AttackRange = (ushort)Random.Next(0, 10);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeEncounterTable(string tablePath, string outputFolder)
+        private static void RandomizeEncounterTable(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<EncounterTable>(tablePath);
 
@@ -375,10 +375,10 @@ namespace AtlusRandomizer
                 e.MusicId = (ushort)Random.Next(0, 11);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeEncounterTableFES(string tablePath, string outputFolder)
+        private static void RandomizeEncounterTableFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<EncounterTableF>(tablePath);
 
@@ -405,10 +405,10 @@ namespace AtlusRandomizer
                 e.MusicId = (ushort)Random.Next(0, 11);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeEncounterTableBossRush(string tablePath, string outputFolder)
+        private static void RandomizeEncounterTableBossRush(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<EncounterTable>(tablePath);
 
@@ -434,10 +434,10 @@ namespace AtlusRandomizer
                 e.MusicId = (ushort)Random.Next(0, 11);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeEncounterTableBossRushFES(string tablePath, string outputFolder)
+        private static void RandomizeEncounterTableBossRushFES(string tablePath, string modFolder)
         {
             var table = TableSerializer.Deserialize<EncounterTableF>(tablePath);
 
@@ -463,10 +463,10 @@ namespace AtlusRandomizer
                 e.MusicId = (ushort)Random.Next(0, 11);
             }
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
-        private static void RandomizeMessageTable(string tablePath, string outputFolder)
+        private static void RandomizeMessageTable(string tablePath, string modFolder)
         {
             string[] translated;
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
@@ -481,7 +481,7 @@ namespace AtlusRandomizer
 
             table.BattleMessageScript = ScriptRandomizer.RandomizeMessageScript(table.BattleMessageScript);
 
-            TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
         public static List<Tuple<ushort, ushort>> p3fesfields = new List<Tuple<ushort, ushort>>()

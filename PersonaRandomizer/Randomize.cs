@@ -13,7 +13,7 @@ namespace PersonaRandomizer
 {
     public class Randomize
     {
-        public void ADX(string inputFolder, string outputFolder, List<string> fileList)
+        public void ADX(string inputFolder, string modFolder, List<string> fileList)
         {
             if (!Directory.Exists(inputFolder))
                 return;
@@ -30,26 +30,26 @@ namespace PersonaRandomizer
                 }
             }
 
-            ShuffleAndCopyFiles(adxFiles, fileList, outputFolder);
+            ShuffleAndCopyFiles(adxFiles, fileList, modFolder);
         }
 
-        public void RMD(string inputFolder, string outputFolder, List<string> fileList)
+        public void RMD(string inputFolder, string modFolder, List<string> fileList)
         {
             if (!Directory.Exists(inputFolder))
                 return;
 
             List<string> rmdFiles = new List<string>(Directory.GetFiles(inputFolder, "*.RMD", System.IO.SearchOption.AllDirectories));
-            ShuffleAndCopyFiles(rmdFiles, fileList, outputFolder);
+            ShuffleAndCopyFiles(rmdFiles, fileList, modFolder);
         }
 
-        public void PAC(string inputFolder, string outputFolder, List<string> fileList)
+        public void PAC(string inputFolder, string modFolder, List<string> fileList)
         {
             if (!Directory.Exists(inputFolder))
                 return;
 
             // Shufle all RMD files from input folder
             List<string> rmdFiles = new List<string>(Directory.GetFiles(inputFolder, "*.RMD", System.IO.SearchOption.AllDirectories));
-            var shuffledFiles = ShuffleFiles(rmdFiles, fileList, outputFolder);
+            var shuffledFiles = ShuffleFiles(rmdFiles, fileList, modFolder);
             
             // Create replacement PACs in output folder containing shuffled RMDs
             for (int i = 0; i < fileList.Count; i++)
@@ -57,28 +57,28 @@ namespace PersonaRandomizer
                 PAKFileSystem pak = new PAKFileSystem();
                 pak.AddFile(Path.GetFileNameWithoutExtension(fileList[i]) + ".RMD", rmdFiles[i], ConflictPolicy.Replace);
 
-                string outPath = $"{outputFolder}\\{fileList[i].Split('\\').Last()}";
+                string outPath = $"{modFolder}\\{fileList[i].Split('\\').Last()}";
                 pak.Save(outPath);
                 
             }
         }
 
-        public void BIN(string inputFolder, string outputFolder, List<string> fileList)
+        public void BIN(string inputFolder, string modFolder, List<string> fileList)
         {
             if (!Directory.Exists(inputFolder))
                 return;
 
             List<string> binFiles = new List<string>(Directory.GetFiles(inputFolder, "*.BIN", System.IO.SearchOption.AllDirectories));
-            ShuffleAndCopyFiles(binFiles, fileList, outputFolder);
+            ShuffleAndCopyFiles(binFiles, fileList, modFolder);
         }
 
-        public static void ShuffleAndCopyFiles(List<string> filteredFiles, List<string> fileList, string outputFolder)
+        public static void ShuffleAndCopyFiles(List<string> filteredFiles, List<string> fileList, string modFolder)
         {
-            var shuffledFiles = ShuffleFiles(filteredFiles, fileList, outputFolder);
-            CopyShuffledFiles(shuffledFiles, fileList, outputFolder);
+            var shuffledFiles = ShuffleFiles(filteredFiles, fileList, modFolder);
+            CopyShuffledFiles(shuffledFiles, fileList, modFolder);
         }
 
-        public static string[] ShuffleFiles(List<string> filteredFiles, List<string> fileList, string outputFolder)
+        public static string[] ShuffleFiles(List<string> filteredFiles, List<string> fileList, string modFolder)
         {
             Random rng = new Random();
             string[] shuffledFiles = filteredFiles.OrderBy(x => rng.Next()).ToArray();
@@ -94,13 +94,13 @@ namespace PersonaRandomizer
             return shuffledFiles;
         }
 
-        public static void CopyShuffledFiles(string[] shuffledFiles, List<string> fileList, string outputFolder)
+        public static void CopyShuffledFiles(string[] shuffledFiles, List<string> fileList, string modFolder)
         {
-            Directory.CreateDirectory(outputFolder);
+            Directory.CreateDirectory(modFolder);
 
             for (int i = 0; i < fileList.Count; i++)
             {
-                string newFileName = $"{outputFolder}\\{fileList[i].Split('\\').Last()}";
+                string newFileName = $"{modFolder}\\{fileList[i].Split('\\').Last()}";
                 File.Copy(shuffledFiles[i], newFileName, true);
             }
         }

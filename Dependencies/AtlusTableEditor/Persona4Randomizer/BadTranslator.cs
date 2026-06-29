@@ -46,7 +46,11 @@ namespace AtlusRandomizer
 
             var result = translator.TranslateAsync(text, targetLanguage);
 
-            return result.Result.Translation;
+            try
+            {
+                return result.Result.Translation;
+            }
+            catch { return text; } 
         }
     }
 }

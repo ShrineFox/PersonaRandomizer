@@ -19,7 +19,7 @@ namespace AtlusTableRandomizer
 
         }
 
-        public static void Randomize(string tableDirectoryPath, List<string> options, string outputFolder, bool bossRush = false, string excludedUnits = "")
+        public static void Randomize(string tableDirectoryPath, List<string> options, string modFolder, string excludedUnits = "", bool bossRush = false)
         {
             if (File.Exists(tableDirectoryPath))
             {
@@ -40,58 +40,58 @@ namespace AtlusTableRandomizer
                     case "ENCOUNT":
                         if (options.Any(x => x.Equals("ENCOUNT")))
                         {
-                            RandomizeEncounterTable(path, bossRush, outputFolder, excludedUnits);
+                            RandomizeEncounterTable(path, bossRush, modFolder, excludedUnits);
                         }
                         break;
 
                     case "PERSONA":
                         if (options.Any(x => x.Equals("PERSONA")))
                         {
-                            RandomizePersonaTable(path, outputFolder);
+                            RandomizePersonaTable(path, modFolder);
                         }
                         break;
 
                     case "UNIT":
                         if (options.Any(x => x.Equals("UNIT")))
                         {
-                            RandomizeUnitTable(path, outputFolder);
+                            RandomizeUnitTable(path, modFolder);
                         }
                         break;
 
                     case "SKILL":
                         if (options.Any(x => x.Equals("SKILL")))
                         {
-                            RandomizeSkillTable(path, outputFolder);
+                            RandomizeSkillTable(path, modFolder);
                         }
                         break;
 
                     case "ITEM":
                         if (options.Any(x => x.Equals("ITEM")))
                         {
-                            RandomizeItemTable(path, outputFolder);
+                            RandomizeItemTable(path, modFolder);
                         }
                         break;
 
                     case "NAME":
                         if (options.Any(x => x.Equals("NAME")))
                         {
-                            RandomizeNameTable(path, outputFolder);
+                            RandomizeNameTable(path, modFolder);
                         }
                         break;
 
                     case "ELSAI":
                         if (options.Any(x => x.Equals("ELSAI")))
                         {
-                            RandomizeElsaiTable(path, outputFolder);
+                            RandomizeElsaiTable(path, modFolder);
                         }
                         break;
                 }
             }
         }
 
-        private static void RandomizeElsaiTable(string tablePath, string outputFolder)
+        private static void RandomizeElsaiTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.ElsaiTable>(tablePath);
 
             var ais = new List<ushort>();
@@ -112,9 +112,9 @@ namespace AtlusTableRandomizer
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
-        private static void RandomizeEncounterTable(string tablePath, bool bossRush, string outputFolder, string excludedUnits = "")
+        private static void RandomizeEncounterTable(string tablePath, bool bossRush, string modFolder, string excludedUnits = "")
         {
-            string output = Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.EncounterTable>(tablePath);
 
             var encounterTypes = new List<ushort>();
@@ -212,9 +212,9 @@ namespace AtlusTableRandomizer
 
         }
 
-        private static void RandomizeEncounterTableRoyal(string tablePath, bool bossRush, string outputFolder, string excludedUnits = "")
+        private static void RandomizeEncounterTableRoyal(string tablePath, bool bossRush, string modFolder, string excludedUnits = "")
         {
-            string output = Path.Combine(outputFolder, $"P5REssentials\\CPK\\TBL.CPK\\BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"P5REssentials\\CPK\\TBL.CPK\\BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5Royal.EncounterTable>(tablePath);
 
             var encounterTypes = new List<ushort>();
@@ -312,9 +312,9 @@ namespace AtlusTableRandomizer
 
         }
 
-        private static void RandomizePersonaTable(string tablePath, string outputFolder)
+        private static void RandomizePersonaTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.PersonaTable>(tablePath);
 
             var arcanas = new List<byte>();
@@ -360,9 +360,9 @@ namespace AtlusTableRandomizer
 
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
-        private static void RandomizeUnitTable(string tablePath, string outputFolder)
+        private static void RandomizeUnitTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.UnitTable>(tablePath);
             
             var arcanas = new List<byte>();
@@ -446,9 +446,9 @@ namespace AtlusTableRandomizer
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
-        private static void RandomizeSkillTable(string tablePath, string outputFolder)
+        private static void RandomizeSkillTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.SkillTable>(tablePath);
 
             for (int i = 0; i < table.Skills.Length; i++)
@@ -462,9 +462,9 @@ namespace AtlusTableRandomizer
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
-        private static void RandomizeItemTable(string tablePath, string outputFolder)
+        private static void RandomizeItemTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.ItemTable>(tablePath);
 
             Shuffle(table.Accessories);
@@ -479,9 +479,9 @@ namespace AtlusTableRandomizer
             TableSerializer.Serialize(table, output, Endianness.BigEndian);
         }
 
-        private static void RandomizeNameTable(string tablePath, string outputFolder)
+        private static void RandomizeNameTable(string tablePath, string modFolder)
         {
-            string output = Path.Combine(outputFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
+            string output = Path.Combine(modFolder, $"BATTLE\\TABLE\\{Path.GetFileName(tablePath)}");
             var table = TableSerializer.Deserialize<AtlusTableLib.Persona5.NameTable>(tablePath);
 
             Shuffle(table.ArcanaNames);

@@ -8,17 +8,7 @@ namespace PersonaRandomizer
 {
     public class P4FileLists
     {
-        public List<string> p4Tables = new List<string>()
-        {
-            "UNIT",
-            "SKILL",
-            "PERSONA",
-            "MSG",
-            "MODEL",
-            "ENCOUNT"
-        };
-
-        public List<string> p4Dropdown = new List<string>()
+        public List<string> p4Dirs = new List<string>()
         {
             "BGM.CVM",
             "DATA.CVM/BUSTUP",
@@ -32,6 +22,21 @@ namespace PersonaRandomizer
             "BTL.CVM/MODEL_BTL/PERSONA",
             "BTL.CVM/MODEL_BTL/PACK",
             "DATA.CVM/MODEL/PACK",
+        };
+
+        public List<string> p4gDirs = new List<string>()
+        {
+            // not yet implemented
+        };
+
+        public List<string> p4Tables = new List<string>()
+        {
+            "UNIT.TBL",
+            "SKILL.TBL",
+            "PERSONA.TBL",
+            "MSG.TBL",
+            "MODEL.TBL",
+            "ENCOUNT.TBL"
         };
 
         public List<string> BGM = new List<string>()

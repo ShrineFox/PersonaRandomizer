@@ -21,156 +21,120 @@ namespace PersonaRandomizer
         P4FileLists p4files = new P4FileLists();
         P5FileLists p5files = new P5FileLists();
 
-        public string inputFolder;
-        public string tableInput;
-        public string outputFolder;
         public string game;
 
         public MainForm()
         {
             InitializeComponent();
+
             //Set game dropdown to default value
             comboBox_Game.SelectedIndex = 0;
-            lbl_Usage.Text = "Usage: Extract contents from game folder\n matching \"Mode\" dropdown to Input Folder.";
+            //Set translation engine dropdown to default value
+            comboBox_TranslateEngine.SelectedIndex = 0;
         }
 
-        private void txt_Input_Click(object sender, EventArgs e)
+        // Reusable function to choose folder for input/output
+        private static string ChooseFolder()
         {
+            string folderPath = "";
             CommonOpenFileDialog dialog = new CommonOpenFileDialog();
             dialog.IsFolderPicker = true;
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                inputFolder = dialog.FileName;
-                txt_Input.Text = inputFolder;
+                folderPath = dialog.FileName;
             }
+
+            return folderPath;
         }
 
-        private void txt_Output_Click(object sender, EventArgs e)
+        private void txt_InputFolder_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                outputFolder = dialog.FileName;
-                txt_Output.Text = outputFolder;
-            }
+            txt_InputFolder.Text = ChooseFolder();
         }
 
-        private void combobox_Mode_DataSourceChanged(object sender, EventArgs e)
+        private void txt_ModFolder_Click(object sender, EventArgs e)
         {
-            //Set dropdownlist for what files to randomize back to default
-            //combobox_Mode.SelectedIndex = 1;
+            txt_ModFolder.Text = ChooseFolder();
         }
 
-        private void btn_Randomize_Click(object sender, EventArgs e)
+        private void txtBox_TableFolder_Click(object sender, EventArgs e)
         {
-            //Randomize depending on controls currently shown
-            #if !DEBUG
-            try
-            {
-            #endif
-                if (tabControl_RandomizeType.SelectedIndex == 0)
-                    RandomizeFiles();
-                else
-                    RandomizeTables();
-                MessageBox.Show("Done randomizing!");
-            #if !DEBUG
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            #endif
+            txt_TblFolder.Text = ChooseFolder();
+        }
+
+        private void btn_RandomizeFiles_Click(object sender, EventArgs e)
+        {
+            RandomizeFiles();
+            MessageBox.Show("Done randomizing files!");
         }
 
         private void RandomizeFiles()
         {
-            lbl_Status.Text = "Randomizing file data...";
+            List<string> options = new List<string>();
+            foreach (var item in checkedListBox_FilesToRandomize.CheckedItems)
+                options.Add(item.ToString());
+
             Randomize randomize = new Randomize();
-            int i = combobox_Mode.SelectedIndex;
-            if (game == "Persona 3 FES")
+            if (game == "Persona 3 FES" || game == "Persona 3")
             {
-                switch (i)
-                {
-                    case 0: //BGM
-                        randomize.ADX(inputFolder, Path.Combine(outputFolder, "BGM"), p3files.BGM);
-                        break;
-                    case 1: //BUSTUP
-                        randomize.BIN(inputFolder, Path.Combine(outputFolder, "DATA\\BUSTUP"), p3files.BUSTUP);
-                        break;
-                    case 2: //FIELD/RMD
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\FIELD\\RMD"), p3files.FIELDRMD);
-                        break;
-                    case 3: //FACILITYP
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\FACILITYP"), p3files.FACILITYP);
-                        break;
-                    case 4: //FIELD
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\FIELD"), p3files.FIELD);
-                        break;
-                    case 5: //NPC
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\NPC"), p3files.NPC);
-                        break;
-                    case 6: //PERSONA
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\PERSONA"), p3files.PERSONA);
-                        break;
-                    case 7: //SYMBOL
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\SYMBOL"), p3files.SYMBOL);
-                        break;
-                    case 8: //WEAPON
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\WEAPON"), p3files.WEAPON);
-                        break;
-                    case 9: // MODEL/PACK
-                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL\\PACK"), p3files.MODELPACK);
-                        break;
-                }
+                if (options.Any(x => x.Equals("BGM.CVM")))
+                    randomize.ADX(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BGM"), p3files.BGM);
+                if (options.Any(x => x.Equals("DATA.CVM/BUSTUP")))
+                    randomize.BIN(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\BUSTUP"), p3files.BUSTUP);
+                if (options.Any(x => x.Equals("DATA.CVM/FIELD/RMD")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\FIELD\\RMD"), p3files.FIELDRMD);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/FACILITYP")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\FACILITYP"), p3files.FACILITYP);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/FIELD")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\FIELD"), p3files.FIELD);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/NPC")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\NPC"), p3files.NPC);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/PERSONA")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\PERSONA"), p3files.PERSONA);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/SYMBOL")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\SYMBOL"), p3files.SYMBOL);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/WEAPON")))
+                   randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\WEAPON"), p3files.WEAPON);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL/PACK")))
+                    randomize.PAC(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL\\PACK"), p3files.MODELPACK);
             }
             else if (game == "Persona 4")
             {
-                switch (i)
-                {
-                    case 0: //BGM
-                        randomize.ADX(inputFolder, Path.Combine(outputFolder, "BGM"), p4files.BGM);
-                        break;
-                    case 1: //BUSTUP
-                        randomize.BIN(inputFolder, Path.Combine(outputFolder, "DATA\\BUSTUP"), p4files.BUSTUP);
-                        break;
-                    case 2: //FIELD/RMD
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\FIELD\\RMD"), p4files.FIELDRMD);
-                        break;
-                    case 3: //FACILITYP
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\FACILITYP"), p4files.FACILITYP);
-                        break;
-                    case 4: //FIELD
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\FIELD"), p4files.FIELD);
-                        break;
-                    case 5: //NPC
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\NPC"), p4files.NPC);
-                        break;
-                    case 6: //NPC2
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\NPC2"), p4files.NPC2);
-                        break;
-                    case 7: //SYMBOL
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\SYMBOL"), p4files.SYMBOL);
-                        break;
-                    case 8: //WEAPON
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\WEAPON"), p4files.WEAPON);
-                        break;
-                    case 9: //PERSONA
-                        randomize.RMD(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL_BTL\\PERSONA"), p4files.PERSONA);
-                        break;
-                    case 10: // MODEL_BTL/PACK
-                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "BTL\\MODEL_BTL\\PACK"), p4files.MODELBTLPACK);
-                        break;
-                    case 11: // MODEL/PACK
-                        randomize.PAC(inputFolder, Path.Combine(outputFolder, "DATA\\MODEL\\PACK"), p4files.MODELPACK);
-                        break;
-                }
+                if (options.Any(x => x.Equals("BGM.CVM")))
+                    randomize.ADX(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BGM"), p4files.BGM);
+                if (options.Any(x => x.Equals("DATA.CVM/BUSTUP")))
+                    randomize.BIN(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\BUSTUP"), p4files.BUSTUP);
+                if (options.Any(x => x.Equals("DATA.CVM/FIELD/RMD")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\FIELD\\RMD"), p4files.FIELDRMD);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/FACILITYP")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\FACILITYP"), p4files.FACILITYP);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/FIELD")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\FIELD"), p4files.FIELD);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/NPC")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\NPC"), p4files.NPC);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/NPC2")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\NPC2"), p4files.NPC2);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/SYMBOL")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\SYMBOL"), p4files.SYMBOL);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/WEAPON")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\WEAPON"), p4files.WEAPON);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL_BTL/PERSONA")))
+                    randomize.RMD(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL_BTL\\PERSONA"), p4files.PERSONA);
+                if (options.Any(x => x.Equals("BTL.CVM/MODEL_BTL/PACK")))
+                    randomize.PAC(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "BTL\\MODEL_BTL\\PACK"), p4files.MODELBTLPACK);
+                if (options.Any(x => x.Equals("DATA.CVM/MODEL/PACK")))
+                    randomize.PAC(txt_InputFolder.Text, Path.Combine(txt_ModFolder.Text, "DATA\\MODEL\\PACK"), p4files.MODELPACK);
             }
+        }
+
+        private void Btn_RandomizeTBLs_Click(object sender, EventArgs e)
+        {
+            RandomizeTables();
+            MessageBox.Show("Done randomizing tables!");
         }
 
         private void RandomizeTables()
         {
-            lbl_Status.Text = "Randomizing TBL data...";
             List<string> options = new List<string>();
             foreach (var item in checkedListBox_Tables.CheckedItems)
                 options.Add(item.ToString());
@@ -178,80 +142,66 @@ namespace PersonaRandomizer
             switch(game)
             {
                 case "Persona 3 FES":
-                    Persona3FesTableRandomizer.Randomize(txtBox_TableInput.Text, options, outputFolder, checkBox_BossRush.Checked);
+                    Persona3FesTableRandomizer.Randomize(txt_TblFolder.Text, options, txt_ModFolder.Text);
                     break;
                 case "Persona 4":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, false, outputFolder, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txt_TblFolder.Text, options, false, txt_ModFolder.Text);
                     break;
                 case "Persona 4 Golden":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, true, outputFolder, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txt_TblFolder.Text, options, true, txt_ModFolder.Text);
                     break;
                 case "Persona 5":
                 case "Persona 5 Royal":
-                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options, outputFolder, checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
+                    AtlusTableRandomizer.Program.Randomize(txt_TblFolder.Text, options, txt_ModFolder.Text, txtBox_ExcludedUnits.Text);
                     break;
             }
         }
 
         private void ComboBox_Game_IndexChanged(object sender, EventArgs e)
         {
-            //Disable elements not compatible with specific games
+            // Update game variable to selected game
             game = comboBox_Game.Text;
-            lbl_Status.Text = "";
-            combobox_Mode.DataSource = null;
+
+            // Clear checkedlistboxes of their options
+            checkedListBox_FilesToRandomize.Items.Clear();
             checkedListBox_Tables.Items.Clear();
-            bool enableFiles = true;
 
-            if (game != "Persona 3 FES" && game != "Persona 4")
-                enableFiles = false;
-            if (enableFiles)
+            //Repopulate checkbox choices in each tab
+            switch(game)
             {
-                combobox_Mode.DisplayMember = "Test";
-                btn_Randomize.Enabled = true;
-                combobox_Mode.Enabled = true;
-                txt_Input.Enabled = true;
-                txt_Output.Enabled = true;
-            }
-            else
-            {
-                lbl_Status.Text += $"Files not yet supported.";
-                combobox_Mode.Enabled = false;
-                txt_Input.Enabled = false;
-                txt_Output.Enabled = false;
-                if (tabControl_RandomizeType.SelectedIndex == 0)
-                    btn_Randomize.Enabled = false;
-            }
-            //Set files dropdown for supported games
-            if (game == "Persona 3 FES")
-                combobox_Mode.DataSource = p3files.p3Dropdown;
-            else if (game == "Persona 4")
-                combobox_Mode.DataSource = p4files.p4Dropdown;
-            //Repopulate Table tab
-            if (game == "Persona 3 FES")
-                foreach (var tableName in p3files.p3fesTables)
-                    checkedListBox_Tables.Items.Insert(0,tableName);
-            else if (game == "Persona 3")
-                foreach (var tableName in p3files.p3Tables)
-                    checkedListBox_Tables.Items.Insert(0, tableName);
-            else if (game == "Persona 4" || game == "Persona 4 Golden")
-                foreach (var tableName in p4files.p4Tables)
-                    checkedListBox_Tables.Items.Insert(0, tableName);
-            else if (game == "Persona 5" || game == "Persona 5 Royal")
-                foreach (var tableName in p5files.p5Tables)
-                    checkedListBox_Tables.Items.Insert(0, tableName);
-            lbl_TableInput.Text = "Extracted .TBLs Folder:";
-        }
-
-        private void txtBox_TableInput_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
-            if (game == "Persona 5" || game == "Persona 5 Royal")
-                dialog.IsFolderPicker = false;
-            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                tableInput = dialog.FileName;
-                txtBox_TableInput.Text = tableInput;
+                case "Persona 3 FES":
+                    foreach (var tableName in p3files.p3fesTables)
+                        checkedListBox_Tables.Items.Insert(0, tableName);
+                    foreach (var dirName in p3files.p3Dirs)
+                        checkedListBox_FilesToRandomize.Items.Insert(0, dirName);
+                    break;
+                case "Persona 3":
+                    foreach (var tableName in p3files.p3Tables)
+                        checkedListBox_Tables.Items.Insert(0, tableName);
+                    foreach (var dirName in p3files.p3Dirs)
+                        checkedListBox_FilesToRandomize.Items.Insert(0, dirName);
+                    break;
+                case "Persona 4":
+                    foreach (var tableName in p4files.p4Tables)
+                        checkedListBox_Tables.Items.Insert(0, tableName);
+                    foreach (var tableName in p4files.p4Dirs)
+                        checkedListBox_FilesToRandomize.Items.Insert(0, tableName);
+                    break;
+                case "Persona 4 Golden":
+                    foreach (var tableName in p4files.p4Tables)
+                        checkedListBox_Tables.Items.Insert(0, tableName);
+                    foreach (var tableName in p4files.p4gDirs)
+                        checkedListBox_FilesToRandomize.Items.Insert(0, tableName);
+                    break;
+                case "Persona 5":
+                case "Persona 5 Royal":
+                    foreach (var tableName in p5files.p5Tables)
+                        checkedListBox_Tables.Items.Insert(0, tableName);
+                    foreach (var tableName in p5files.p5Dirs)
+                        checkedListBox_FilesToRandomize.Items.Insert(0, tableName);
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -261,18 +211,6 @@ namespace PersonaRandomizer
                 return true;
             else
                 return false;
-        }
-
-        private void RandomizeType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Only allow randomizing P5/P4G tables and not files
-            if (game == "Persona 5" || game == "Persona 5 Royal" || game == "Persona 4 Golden")
-            {
-                if (tabControl_RandomizeType.SelectedIndex != 0)
-                    btn_Randomize.Enabled = true;
-                else
-                    btn_Randomize.Enabled = false;
-            }
         }
     }
 }

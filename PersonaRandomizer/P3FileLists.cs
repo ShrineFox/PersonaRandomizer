@@ -8,34 +8,7 @@ namespace PersonaRandomizer
 {
     public class P3FileLists
     {
-        public List<string> p3fesTables = new List<string>()
-        {
-            "UNIT_F",
-            "UNIT",
-            "SKILL_F",
-            "SKILL",
-            "PERSONA_F",
-            "PERSONA",
-            "MSG",
-            "MODEL",
-            "ENCOUNT_F",
-            "ENCOUNT",
-            "AICALC_F",
-            "AICALC"
-        };
-
-        public List<string> p3Tables = new List<string>()
-        {
-            "UNIT",
-            "SKILL",
-            "PERSONA",
-            "MSG",
-            "MODEL",
-            "ENCOUNT",
-            "AICALC"
-        };
-
-        public List<string> p3Dropdown = new List<string>()
+        public List<string> p3Dirs = new List<string>()
         {
             "BGM.CVM",
             "DATA.CVM/BUSTUP",
@@ -47,6 +20,33 @@ namespace PersonaRandomizer
             "BTL.CVM/MODEL/SYMBOL",
             "BTL.CVM/MODEL/WEAPON",
             "BTL.CVM/MODEL/PACK"
+        };
+
+        public List<string> p3fesTables = new List<string>()
+        {
+            "UNIT_F.TBL",
+            "UNIT.TBL",
+            "SKILL_F.TBL",
+            "SKILL.TBL",
+            "PERSONA_F.TBL",
+            "PERSONA.TBL",
+            "MSG.TBL",
+            "MODEL.TBL",
+            "ENCOUNT_F.TBL",
+            "ENCOUNT.TBL",
+            "AICALC_F.TBL",
+            "AICALC.TBL"
+        };
+
+        public List<string> p3Tables = new List<string>()
+        {
+            "UNIT.TBL",
+            "SKILL.TBL",
+            "PERSONA.TBL",
+            "MSG.TBL",
+            "MODEL.TBL",
+            "ENCOUNT.TBL",
+            "AICALC.TBL"
         };
 
         public List<string> BGM = new List<string>()
