@@ -288,9 +288,6 @@ namespace AtlusRandomizer
 
         private static void RandomizeMessageTable(string tablePath, string outputFolder)
         {
-            if (!IsAPIKeyValid())
-                return;
-
             string[] translated;
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
             BadTranslator.Translate(table.ArcanaNames, out translated);

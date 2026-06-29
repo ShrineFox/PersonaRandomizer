@@ -6,8 +6,6 @@ namespace AtlusRandomizer
 {
     public static class Translator
     {
-        private static readonly GoogleTranslate sGoogleTranslate = new GoogleTranslate(File.ReadAllText("google_translate_api_key.txt"));
-
         public static void Translate(string[] array, params Language[] languages)
         {
             for (int i = 0; i < array.Length; i++)
@@ -16,13 +14,7 @@ namespace AtlusRandomizer
 
         public static string Translate(string text, params Language[] languages)
         {
-            string translatedText = text;
-            for (int i = 0; i < languages.Length; i += 2)
-            {
-                translatedText = sGoogleTranslate.Translate(languages[i], languages[i + 1], translatedText)[0].TranslatedText;
-            }
-
-            return WebUtility.HtmlDecode(translatedText);
+            return BadTranslator.Translate(text, new string[] { "ja", "ru", "en" });
         }
 
         public static void Translate(string[] array)

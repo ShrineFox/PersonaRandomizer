@@ -95,11 +95,9 @@ namespace AtlusRandomizer
         private static void RandomizeAICalculationTable(string tablePath, string outputFolder)
         {
             var table = TableSerializer.Deserialize<AICalculationTable>(tablePath);
-            if (IsAPIKeyValid())
-            {
-                table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
-                table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
-            }
+            table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
+            table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
+            
 
             TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
@@ -107,11 +105,9 @@ namespace AtlusRandomizer
         private static void RandomizeAICalculationTableFES(string tablePath, string outputFolder)
         {
             var table = TableSerializer.Deserialize<AICalculationTableF>(tablePath);
-            if (IsAPIKeyValid())
-            {
-                table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
-                table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
-            }
+            table.PlayerAIScript = ScriptRandomizer.RandomizeFlowScript(table.PlayerAIScript);
+            table.BossAIScript = ScriptRandomizer.RandomizeFlowScript(table.BossAIScript);
+            
 
             TableSerializer.Serialize(table, Path.Combine(outputFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
@@ -472,9 +468,6 @@ namespace AtlusRandomizer
 
         private static void RandomizeMessageTable(string tablePath, string outputFolder)
         {
-            if (!IsAPIKeyValid())
-                return;
-
             string[] translated;
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
             BadTranslator.Translate(table.ArcanaNames, out translated);
