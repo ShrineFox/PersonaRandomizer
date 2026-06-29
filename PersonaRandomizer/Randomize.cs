@@ -58,7 +58,7 @@ namespace PersonaRandomizer
                 pak.AddFile(Path.GetFileNameWithoutExtension(fileList[i]) + ".RMD", rmdFiles[i], ConflictPolicy.Replace);
 
                 string outPath = $"{outputFolder}\\{fileList[i].Split('\\').Last()}";
-                pak.Save(Path.Combine(outPath, Path.GetFileName(fileList[i])));
+                pak.Save(outPath);
                 
             }
         }

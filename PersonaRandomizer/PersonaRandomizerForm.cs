@@ -88,7 +88,7 @@ namespace PersonaRandomizer
             lbl_Status.Text = "Randomizing file data...";
             Randomize randomize = new Randomize();
             int i = combobox_Mode.SelectedIndex;
-            if (game == "Persona 3")
+            if (game == "Persona 3 FES")
             {
                 switch (i)
                 {
@@ -178,17 +178,17 @@ namespace PersonaRandomizer
             switch(game)
             {
                 case "Persona 3 FES":
-                    Persona3FesTableRandomizer.Randomize(txtBox_TableInput.Text, options, checkBox_BossRush.Checked);
+                    Persona3FesTableRandomizer.Randomize(txtBox_TableInput.Text, options, outputFolder, checkBox_BossRush.Checked);
                     break;
                 case "Persona 4":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, false, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, false, outputFolder, checkBox_BossRush.Checked);
                     break;
                 case "Persona 4 Golden":
-                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, true, checkBox_BossRush.Checked);
+                    Persona4TableRandomizer.Randomize(txtBox_TableInput.Text, options, true, outputFolder, checkBox_BossRush.Checked);
                     break;
                 case "Persona 5":
                 case "Persona 5 Royal":
-                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options, checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
+                    AtlusTableRandomizer.Program.Randomize(txtBox_TableInput.Text, options, outputFolder, checkBox_BossRush.Checked, txtBox_ExcludedUnits.Text);
                     break;
             }
         }

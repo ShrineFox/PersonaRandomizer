@@ -129,6 +129,7 @@ namespace AtlusTableLib.Serialization
         {
             var tableType = typeof(T);
 
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
             using (var fileStream = File.OpenWrite(path))
             using (var serializer = new TableSerializer(tableType, fileStream))
             {
