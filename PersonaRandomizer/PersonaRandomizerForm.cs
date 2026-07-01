@@ -129,8 +129,15 @@ namespace PersonaRandomizer
 
         private void Btn_RandomizeTBLs_Click(object sender, EventArgs e)
         {
+            SetupTranslator();
             RandomizeTables();
             MessageBox.Show("Done randomizing tables!");
+        }
+
+        private void SetupTranslator()
+        {
+            BadTranslator.languages = txt_TranslateLanguages.Text.Replace(" ","").Split(',');
+            BadTranslator.translationEngine = comboBox_TranslateEngine.SelectedItem.ToString();
         }
 
         private void RandomizeTables()

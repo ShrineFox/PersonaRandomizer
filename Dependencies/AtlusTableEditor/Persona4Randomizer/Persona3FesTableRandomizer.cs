@@ -275,7 +275,7 @@ namespace AtlusRandomizer
                 }
             }
 
-            TableSerializer.Serialize(table, tablePath + ".randomized");
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
         private static void RandomizePersonaTableFES(string tablePath, string modFolder)
@@ -472,12 +472,16 @@ namespace AtlusRandomizer
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
             BadTranslator.Translate(table.ArcanaNames, out translated);
             translated = table.ArcanaNames;
+            File.WriteAllLines("p3f_arcana.txt", translated);
             BadTranslator.Translate(table.PersonaNames, out translated);
             translated = table.PersonaNames;
+            File.WriteAllLines("p3f_persona.txt", translated);
             BadTranslator.Translate(table.SkillNames, out translated);
             translated = table.SkillNames;
+            File.WriteAllLines("p3f_skill.txt", translated);
             BadTranslator.Translate(table.UnitNames, out translated);
             translated = table.UnitNames;
+            File.WriteAllLines("p3f_unit.txt", translated);
 
             table.BattleMessageScript = ScriptRandomizer.RandomizeMessageScript(table.BattleMessageScript);
 

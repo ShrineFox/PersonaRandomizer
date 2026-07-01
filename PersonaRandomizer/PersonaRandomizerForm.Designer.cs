@@ -64,6 +64,9 @@ namespace PersonaRandomizer
             this.comboBox_Game = new System.Windows.Forms.ComboBox();
             this.tlp_Main = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox_Game = new System.Windows.Forms.GroupBox();
+            this.lbl_Languages = new System.Windows.Forms.Label();
+            this.lbl_ExcludedUnitIDs = new System.Windows.Forms.Label();
+            this.lbl_ExtractedTBLs = new System.Windows.Forms.Label();
             this.tabControl_RandomizeType.SuspendLayout();
             this.tabPage_Files.SuspendLayout();
             this.tlp_RandomizeFiles.SuspendLayout();
@@ -84,10 +87,10 @@ namespace PersonaRandomizer
             // 
             this.btn_RandomizeFiles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_RandomizeFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btn_RandomizeFiles.Location = new System.Drawing.Point(371, 198);
+            this.btn_RandomizeFiles.Location = new System.Drawing.Point(371, 262);
             this.btn_RandomizeFiles.Margin = new System.Windows.Forms.Padding(4);
             this.btn_RandomizeFiles.Name = "btn_RandomizeFiles";
-            this.btn_RandomizeFiles.Size = new System.Drawing.Size(360, 92);
+            this.btn_RandomizeFiles.Size = new System.Drawing.Size(360, 122);
             this.btn_RandomizeFiles.TabIndex = 0;
             this.btn_RandomizeFiles.Text = "Randomize Files";
             this.btn_RandomizeFiles.UseVisualStyleBackColor = true;
@@ -125,10 +128,10 @@ namespace PersonaRandomizer
             this.tabControl_RandomizeType.Controls.Add(this.tabPage_Files);
             this.tabControl_RandomizeType.Controls.Add(this.tabPage_Tables);
             this.tabControl_RandomizeType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_RandomizeType.Location = new System.Drawing.Point(3, 61);
+            this.tabControl_RandomizeType.Location = new System.Drawing.Point(3, 53);
             this.tabControl_RandomizeType.Name = "tabControl_RandomizeType";
             this.tabControl_RandomizeType.SelectedIndex = 0;
-            this.tabControl_RandomizeType.Size = new System.Drawing.Size(749, 329);
+            this.tabControl_RandomizeType.Size = new System.Drawing.Size(749, 448);
             this.tabControl_RandomizeType.TabIndex = 10;
             // 
             // tabPage_Files
@@ -138,7 +141,7 @@ namespace PersonaRandomizer
             this.tabPage_Files.Location = new System.Drawing.Point(4, 25);
             this.tabPage_Files.Name = "tabPage_Files";
             this.tabPage_Files.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Files.Size = new System.Drawing.Size(741, 300);
+            this.tabPage_Files.Size = new System.Drawing.Size(741, 394);
             this.tabPage_Files.TabIndex = 0;
             this.tabPage_Files.Text = "Files";
             this.tabPage_Files.UseVisualStyleBackColor = true;
@@ -159,7 +162,7 @@ namespace PersonaRandomizer
             this.tlp_RandomizeFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlp_RandomizeFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tlp_RandomizeFiles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tlp_RandomizeFiles.Size = new System.Drawing.Size(735, 294);
+            this.tlp_RandomizeFiles.Size = new System.Drawing.Size(735, 388);
             this.tlp_RandomizeFiles.TabIndex = 11;
             // 
             // groupBox_InputFolder
@@ -169,7 +172,7 @@ namespace PersonaRandomizer
             this.groupBox_InputFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_InputFolder.Location = new System.Drawing.Point(370, 3);
             this.groupBox_InputFolder.Name = "groupBox_InputFolder";
-            this.groupBox_InputFolder.Size = new System.Drawing.Size(362, 91);
+            this.groupBox_InputFolder.Size = new System.Drawing.Size(362, 123);
             this.groupBox_InputFolder.TabIndex = 0;
             this.groupBox_InputFolder.TabStop = false;
             this.groupBox_InputFolder.Text = "Input Files Folder";
@@ -179,7 +182,8 @@ namespace PersonaRandomizer
             this.lbl_InputFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_InputFolder.AutoSize = true;
-            this.lbl_InputFolder.Location = new System.Drawing.Point(7, 54);
+            this.lbl_InputFolder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_InputFolder.Location = new System.Drawing.Point(7, 78);
             this.lbl_InputFolder.Name = "lbl_InputFolder";
             this.lbl_InputFolder.Size = new System.Drawing.Size(220, 32);
             this.lbl_InputFolder.TabIndex = 3;
@@ -190,9 +194,9 @@ namespace PersonaRandomizer
             this.groupBox_ModFolder.Controls.Add(this.lbl_ModFolder);
             this.groupBox_ModFolder.Controls.Add(this.txt_ModFolder);
             this.groupBox_ModFolder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_ModFolder.Location = new System.Drawing.Point(370, 100);
+            this.groupBox_ModFolder.Location = new System.Drawing.Point(370, 132);
             this.groupBox_ModFolder.Name = "groupBox_ModFolder";
-            this.groupBox_ModFolder.Size = new System.Drawing.Size(362, 91);
+            this.groupBox_ModFolder.Size = new System.Drawing.Size(362, 123);
             this.groupBox_ModFolder.TabIndex = 1;
             this.groupBox_ModFolder.TabStop = false;
             this.groupBox_ModFolder.Text = "Mod Folder";
@@ -202,7 +206,8 @@ namespace PersonaRandomizer
             this.lbl_ModFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_ModFolder.AutoSize = true;
-            this.lbl_ModFolder.Location = new System.Drawing.Point(7, 56);
+            this.lbl_ModFolder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_ModFolder.Location = new System.Drawing.Point(6, 83);
             this.lbl_ModFolder.Name = "lbl_ModFolder";
             this.lbl_ModFolder.Size = new System.Drawing.Size(146, 32);
             this.lbl_ModFolder.TabIndex = 9;
@@ -215,7 +220,7 @@ namespace PersonaRandomizer
             this.groupBox_FilesToRandomize.Location = new System.Drawing.Point(3, 3);
             this.groupBox_FilesToRandomize.Name = "groupBox_FilesToRandomize";
             this.tlp_RandomizeFiles.SetRowSpan(this.groupBox_FilesToRandomize, 3);
-            this.groupBox_FilesToRandomize.Size = new System.Drawing.Size(361, 288);
+            this.groupBox_FilesToRandomize.Size = new System.Drawing.Size(361, 382);
             this.groupBox_FilesToRandomize.TabIndex = 2;
             this.groupBox_FilesToRandomize.TabStop = false;
             this.groupBox_FilesToRandomize.Text = "Files to Randomize";
@@ -226,7 +231,7 @@ namespace PersonaRandomizer
             this.checkedListBox_FilesToRandomize.FormattingEnabled = true;
             this.checkedListBox_FilesToRandomize.Location = new System.Drawing.Point(3, 18);
             this.checkedListBox_FilesToRandomize.Name = "checkedListBox_FilesToRandomize";
-            this.checkedListBox_FilesToRandomize.Size = new System.Drawing.Size(355, 267);
+            this.checkedListBox_FilesToRandomize.Size = new System.Drawing.Size(355, 361);
             this.checkedListBox_FilesToRandomize.TabIndex = 18;
             // 
             // lbl_Usage
@@ -244,7 +249,7 @@ namespace PersonaRandomizer
             this.tabPage_Tables.Location = new System.Drawing.Point(4, 25);
             this.tabPage_Tables.Name = "tabPage_Tables";
             this.tabPage_Tables.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Tables.Size = new System.Drawing.Size(741, 300);
+            this.tabPage_Tables.Size = new System.Drawing.Size(741, 419);
             this.tabPage_Tables.TabIndex = 1;
             this.tabPage_Tables.Text = "Tables";
             this.tabPage_Tables.UseVisualStyleBackColor = true;
@@ -264,20 +269,20 @@ namespace PersonaRandomizer
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(735, 294);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(735, 413);
             this.tableLayoutPanel1.TabIndex = 20;
             // 
             // groupBox_TranslateEngine
             // 
             this.groupBox_TranslateEngine.Controls.Add(this.comboBox_TranslateEngine);
             this.groupBox_TranslateEngine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_TranslateEngine.Location = new System.Drawing.Point(3, 222);
+            this.groupBox_TranslateEngine.Location = new System.Drawing.Point(3, 352);
             this.groupBox_TranslateEngine.Name = "groupBox_TranslateEngine";
-            this.groupBox_TranslateEngine.Size = new System.Drawing.Size(361, 69);
+            this.groupBox_TranslateEngine.Size = new System.Drawing.Size(361, 58);
             this.groupBox_TranslateEngine.TabIndex = 19;
             this.groupBox_TranslateEngine.TabStop = false;
             this.groupBox_TranslateEngine.Text = "Translation Engine";
@@ -292,7 +297,8 @@ namespace PersonaRandomizer
             "GoogleTranslate",
             "GoogleTranslate2",
             "MicrosoftAzureTranslator",
-            "YandexTranslate"});
+            "YandexTranslate",
+            "None"});
             this.comboBox_TranslateEngine.Location = new System.Drawing.Point(3, 18);
             this.comboBox_TranslateEngine.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_TranslateEngine.Name = "comboBox_TranslateEngine";
@@ -301,11 +307,12 @@ namespace PersonaRandomizer
             // 
             // groupBox_TranslateLanguages
             // 
+            this.groupBox_TranslateLanguages.Controls.Add(this.lbl_Languages);
             this.groupBox_TranslateLanguages.Controls.Add(this.txt_TranslateLanguages);
             this.groupBox_TranslateLanguages.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_TranslateLanguages.Location = new System.Drawing.Point(370, 149);
+            this.groupBox_TranslateLanguages.Location = new System.Drawing.Point(370, 249);
             this.groupBox_TranslateLanguages.Name = "groupBox_TranslateLanguages";
-            this.groupBox_TranslateLanguages.Size = new System.Drawing.Size(362, 67);
+            this.groupBox_TranslateLanguages.Size = new System.Drawing.Size(362, 97);
             this.groupBox_TranslateLanguages.TabIndex = 18;
             this.groupBox_TranslateLanguages.TabStop = false;
             this.groupBox_TranslateLanguages.Text = "Translate Languages";
@@ -322,11 +329,12 @@ namespace PersonaRandomizer
             // 
             // groupBox_TBLsFolder
             // 
+            this.groupBox_TBLsFolder.Controls.Add(this.lbl_ExtractedTBLs);
             this.groupBox_TBLsFolder.Controls.Add(this.txt_TblFolder);
             this.groupBox_TBLsFolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_TBLsFolder.Location = new System.Drawing.Point(370, 3);
             this.groupBox_TBLsFolder.Name = "groupBox_TBLsFolder";
-            this.groupBox_TBLsFolder.Size = new System.Drawing.Size(362, 67);
+            this.groupBox_TBLsFolder.Size = new System.Drawing.Size(362, 117);
             this.groupBox_TBLsFolder.TabIndex = 0;
             this.groupBox_TBLsFolder.TabStop = false;
             this.groupBox_TBLsFolder.Text = "Extracted TBLs Folder";
@@ -349,16 +357,17 @@ namespace PersonaRandomizer
             this.checkedListBox_Tables.Location = new System.Drawing.Point(3, 3);
             this.checkedListBox_Tables.Name = "checkedListBox_Tables";
             this.tableLayoutPanel1.SetRowSpan(this.checkedListBox_Tables, 3);
-            this.checkedListBox_Tables.Size = new System.Drawing.Size(361, 213);
+            this.checkedListBox_Tables.Size = new System.Drawing.Size(361, 343);
             this.checkedListBox_Tables.TabIndex = 16;
             // 
             // groupBox_ExcludedUnits
             // 
+            this.groupBox_ExcludedUnits.Controls.Add(this.lbl_ExcludedUnitIDs);
             this.groupBox_ExcludedUnits.Controls.Add(this.txtBox_ExcludedUnits);
             this.groupBox_ExcludedUnits.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox_ExcludedUnits.Location = new System.Drawing.Point(370, 76);
+            this.groupBox_ExcludedUnits.Location = new System.Drawing.Point(370, 126);
             this.groupBox_ExcludedUnits.Name = "groupBox_ExcludedUnits";
-            this.groupBox_ExcludedUnits.Size = new System.Drawing.Size(362, 67);
+            this.groupBox_ExcludedUnits.Size = new System.Drawing.Size(362, 117);
             this.groupBox_ExcludedUnits.TabIndex = 1;
             this.groupBox_ExcludedUnits.TabStop = false;
             this.groupBox_ExcludedUnits.Text = "Excluded Unit IDs";
@@ -374,11 +383,12 @@ namespace PersonaRandomizer
             // 
             // btn_RandomizeTBLs
             // 
+            this.btn_RandomizeTBLs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_RandomizeTBLs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.btn_RandomizeTBLs.Location = new System.Drawing.Point(371, 223);
+            this.btn_RandomizeTBLs.Location = new System.Drawing.Point(371, 353);
             this.btn_RandomizeTBLs.Margin = new System.Windows.Forms.Padding(4);
             this.btn_RandomizeTBLs.Name = "btn_RandomizeTBLs";
-            this.btn_RandomizeTBLs.Size = new System.Drawing.Size(231, 62);
+            this.btn_RandomizeTBLs.Size = new System.Drawing.Size(360, 56);
             this.btn_RandomizeTBLs.TabIndex = 17;
             this.btn_RandomizeTBLs.Text = "Randomize TBLs";
             this.btn_RandomizeTBLs.UseVisualStyleBackColor = true;
@@ -422,9 +432,9 @@ namespace PersonaRandomizer
             this.tlp_Main.Location = new System.Drawing.Point(0, 0);
             this.tlp_Main.Name = "tlp_Main";
             this.tlp_Main.RowCount = 2;
-            this.tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
-            this.tlp_Main.Size = new System.Drawing.Size(755, 393);
+            this.tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
+            this.tlp_Main.Size = new System.Drawing.Size(755, 504);
             this.tlp_Main.TabIndex = 14;
             // 
             // groupBox_Game
@@ -433,16 +443,53 @@ namespace PersonaRandomizer
             this.groupBox_Game.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_Game.Location = new System.Drawing.Point(3, 3);
             this.groupBox_Game.Name = "groupBox_Game";
-            this.groupBox_Game.Size = new System.Drawing.Size(371, 52);
+            this.groupBox_Game.Size = new System.Drawing.Size(371, 44);
             this.groupBox_Game.TabIndex = 0;
             this.groupBox_Game.TabStop = false;
             this.groupBox_Game.Text = "Game";
+            // 
+            // lbl_Languages
+            // 
+            this.lbl_Languages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_Languages.AutoSize = true;
+            this.lbl_Languages.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_Languages.Location = new System.Drawing.Point(6, 63);
+            this.lbl_Languages.Name = "lbl_Languages";
+            this.lbl_Languages.Size = new System.Drawing.Size(298, 32);
+            this.lbl_Languages.TabIndex = 19;
+            this.lbl_Languages.Text = "More languages takes longer. Use abbreviations\r\nseparated by commas.";
+            // 
+            // lbl_ExcludedUnitIDs
+            // 
+            this.lbl_ExcludedUnitIDs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_ExcludedUnitIDs.AutoSize = true;
+            this.lbl_ExcludedUnitIDs.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_ExcludedUnitIDs.Location = new System.Drawing.Point(6, 83);
+            this.lbl_ExcludedUnitIDs.Name = "lbl_ExcludedUnitIDs";
+            this.lbl_ExcludedUnitIDs.Size = new System.Drawing.Size(329, 32);
+            this.lbl_ExcludedUnitIDs.TabIndex = 20;
+            this.lbl_ExcludedUnitIDs.Text = "Battle units with these IDs will not be used in encount.tbl\r\nto avoid crashes. Se" +
+    "parate by spaces.";
+            // 
+            // lbl_ExtractedTBLs
+            // 
+            this.lbl_ExtractedTBLs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_ExtractedTBLs.AutoSize = true;
+            this.lbl_ExtractedTBLs.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbl_ExtractedTBLs.Location = new System.Drawing.Point(6, 85);
+            this.lbl_ExtractedTBLs.Name = "lbl_ExtractedTBLs";
+            this.lbl_ExtractedTBLs.Size = new System.Drawing.Size(281, 32);
+            this.lbl_ExtractedTBLs.TabIndex = 21;
+            this.lbl_ExtractedTBLs.Text = "Folder with unedited TBLs to use as a base for\r\nrandomization.";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 393);
+            this.ClientSize = new System.Drawing.Size(755, 504);
             this.Controls.Add(this.tlp_Main);
             this.Controls.Add(this.lbl_Status);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -507,6 +554,9 @@ namespace PersonaRandomizer
         private System.Windows.Forms.TextBox txt_TranslateLanguages;
         private System.Windows.Forms.GroupBox groupBox_TranslateEngine;
         private System.Windows.Forms.ComboBox comboBox_TranslateEngine;
+        private System.Windows.Forms.Label lbl_Languages;
+        private System.Windows.Forms.Label lbl_ExcludedUnitIDs;
+        private System.Windows.Forms.Label lbl_ExtractedTBLs;
     }
 }
 

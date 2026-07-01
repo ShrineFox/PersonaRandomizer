@@ -283,7 +283,7 @@ namespace AtlusRandomizer
                 e.MusicId = (ushort)Random.Next(0, 11);
             }
 
-            TableSerializer.Serialize(table, tablePath + ".bossrush.randomized");
+            TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
         private static void RandomizeMessageTable(string tablePath, string modFolder)
@@ -292,12 +292,16 @@ namespace AtlusRandomizer
             var table = TableSerializer.Deserialize<MessageTable>(tablePath);
             BadTranslator.Translate(table.ArcanaNames, out translated);
             translated = table.ArcanaNames;
+            File.WriteAllLines("p4_arcana.txt", translated);
             BadTranslator.Translate(table.PersonaNames, out translated);
             translated = table.PersonaNames;
+            File.WriteAllLines("p4_persona.txt", translated);
             BadTranslator.Translate(table.SkillNames, out translated);
             translated = table.SkillNames;
+            File.WriteAllLines("p4_skill.txt", translated);
             BadTranslator.Translate(table.UnitNames, out translated);
             translated = table.UnitNames;
+            File.WriteAllLines("p4_unit.txt", translated);
             TableSerializer.Serialize(table, Path.Combine(modFolder, $"BTL\\BATTLE\\{Path.GetFileName(tablePath)}"));
         }
 
